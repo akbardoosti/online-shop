@@ -1,0 +1,8 @@
+.headerSlide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE and Edge */
+.headerSlide {
+  -ms-overflow-style: none;
+}

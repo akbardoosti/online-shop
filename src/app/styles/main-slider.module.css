@@ -1,0 +1,5 @@
+.sliderItem {
+    border-top-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+    overflow: hidden;
+}
