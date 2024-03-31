@@ -15,7 +15,7 @@ const Header: React.FC<{}> = (() => {
     }
     return (
         <>
-            <div className="flex items-center space-x-4">
+            <div className="flex grow items-center space-x-4">
                 <div>
                     <button 
                         className="menu-btn"
@@ -46,12 +46,12 @@ const Header: React.FC<{}> = (() => {
                     </button>
                 </div>
             </div>
-            <div className="text-xl font-bold text-gray-800">
+            <div className="text-xl grow font-bold text-gray-800">
                 <Link href="/">
                     <strong>Beauty</strong>
                 </Link>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center">
                 <div>
                     <button>
                         <svg fill="none" viewBox="0 0 20 25" width="20px" height="20px">
