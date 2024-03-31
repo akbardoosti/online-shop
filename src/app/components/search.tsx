@@ -14,17 +14,17 @@ const Search: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         paddingInline: '20px'
     };
     return (
-        <>
+        <div>
             {/* Overlay */}
             <div
-                className={`fixed inset-0 bg-black opacity-50 transition-opacity ${isOpen ? 'block' : 'hidden'
+                className={`fixed inset-0 bg-black z-50 opacity-50 transition-opacity ${isOpen ? 'block' : 'hidden'
                     }`}
                 onClick={onClose}
             ></div>
 
             {/* Modal */}
             <div
-                className={`fixed inset-0 block items-center justify-center transition-opacity ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                className={`fixed z-50 inset-0 block items-center justify-center transition-opacity ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
                     }`}
             >
                 <div className="bg-white p-4 rounded-lg shadow-lg" style={style}>
@@ -37,7 +37,7 @@ const Search: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                     </svg>
                                 </div>
-                                <input type="search" id="default-search" className="block w-full p-4 ps-10 text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-none dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500" placeholder="Search Mockups, Logos..." required />
+                                <input type="search" id="default-search" className="site-font block w-full p-4 ps-10 text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-none dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500" placeholder="جستجو در محصولات" required />
                             </div>
                         </form>
                         <button onClick={onClose} className="text-gray-500 hover:text-gray-600 focus:outline-none">
@@ -61,7 +61,7 @@ const Search: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 

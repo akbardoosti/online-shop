@@ -29,7 +29,7 @@ export default function RootLayout({
                 <HeaderCarousel />
               </div>
             </div>
-            <div className="container mx-auto flex justify-between items-center py-4">
+            <div className="mx-auto flex justify-between items-center py-4">
               <Header />
             </div>
           </header>
