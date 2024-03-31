@@ -19,6 +19,10 @@ const MainSlider =  () => {
     <Swiper
       // install Swiper modules
       modules={[Scrollbar, A11y, Autoplay, Navigation]}
+      autoplay={{
+        delay: 6000,
+        disableOnInteraction: false,
+      }}
       slidesPerView={1}
       spaceBetween={30}
       className={styles.headerSlide}
