@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+
 import Link from "next/link";
 import dynamic from "next/dynamic";
-// import HeaderCarousel from "./layouts/header-carousel";
 const HeaderCarousel = dynamic(() => import('./layouts/header-carousel'), { ssr: true });
 import headerClasses from './styles/header.module.css';
-import { useState } from "react";
 import Header from "./layouts/header";
-
+import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {

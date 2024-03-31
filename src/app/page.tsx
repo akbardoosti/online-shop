@@ -5,7 +5,9 @@ export default function Home() {
   return (
    <>
     <MainSlider/>
-    <CategoryItemsList/>
+    <div className="my-3">
+      <CategoryItemsList/>
+    </div>
    </>
   );
 }
