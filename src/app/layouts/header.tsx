@@ -3,6 +3,7 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import MenuSlide from '../components/menu-slide';
 import Search from '../components/search';
+import LoginPanel from '../components/login-panel';
 
 const Header: React.FC<{}> = (() => {
     const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
@@ -13,6 +14,10 @@ const Header: React.FC<{}> = (() => {
     const toggleMenu = () => {
         setIsSearchOpen(!isSearchOpen);
     }
+    const [isLoginOpen, setIsLoginOpen] = useState(false);
+    const toggleLoginPanel = () => {
+        setIsLoginOpen(!isLoginOpen);
+    } 
     return (
         <>
             <div className="flex grow items-center space-x-4">
@@ -53,7 +58,7 @@ const Header: React.FC<{}> = (() => {
             </div>
             <div className="flex items-center">
                 <div>
-                    <button>
+                    <button onClick={toggleLoginPanel}>
                         <svg fill="none" viewBox="0 0 20 25" width="20px" height="20px">
                             <path stroke="#000" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.143 6.111a5.095 5.095 0 0 1-1.507 3.614A5.159 5.159 0 0 1 10 11.222a5.16 5.16 0 0 1-3.637-1.497 5.095 5.095 0 0 1-1.506-3.614c0-1.355.542-2.655 1.506-3.614A5.16 5.16 0 0 1 10 1c1.364 0 2.672.538 3.636 1.497a5.095 5.095 0 0 1 1.507 3.614ZM10 15.056a9.028 9.028 0 0 0-6.364 2.62A8.917 8.917 0 0 0 1 24h18a8.917 8.917 0 0 0-2.636-6.325A9.029 9.029 0 0 0 10 15.055Z">
                             </path>
@@ -70,6 +75,7 @@ const Header: React.FC<{}> = (() => {
             </div>
             <MenuSlide isOpen={isSlideOverOpen} onClose={toggleSlideOver} />
             <Search isOpen={isSearchOpen} onClose={toggleMenu} />
+            <LoginPanel isOpen={isLoginOpen} onClose={toggleLoginPanel} />
         </>
     )
 })
