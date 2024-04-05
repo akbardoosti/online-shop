@@ -4,8 +4,6 @@ import productImage from '../../public/images/product.png';
 import Image from "next/image";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {A11y, Autoplay, Navigation, Scrollbar} from "swiper/modules";
-import styles from "@/app/styles/carousel.module.css";
-import mainStyles from "@/app/styles/main-slider.module.css";
 
 // Import Swiper styles
 import 'swiper/css';
