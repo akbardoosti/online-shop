@@ -9,7 +9,7 @@ import 'swiper/css/autoplay';
 import Head from "next/head";
 import cartImage from '../../public/images/cart-item.png';
 
-const ProductPage = (props: any) => {
+const CartPage = (props: any) => {
     return (
         <>
             <Head>
@@ -214,7 +214,7 @@ const ProductPage = (props: any) => {
         </>
     )
 }
-ProductPage.getLayout = function getLayout(page: React.ReactNode) {
+CartPage.getLayout = function getLayout(page: React.ReactNode) {
     return <Layout>{page}</Layout>
 }
-export default ProductPage;
+export default CartPage;
