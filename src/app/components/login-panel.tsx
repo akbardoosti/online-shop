@@ -36,8 +36,8 @@ const LoginPanel: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                             </svg>
                         </button>
                     </div>
-                    <div className="modal-content">
-                        <div className="flex flex-col justify-center items-center h-full absolute w-full space-y-5">
+                    <div className="modal-content h-full">
+                        <div className="flex flex-col h-full justify-center items-center h-full w-full space-y-5">
                             <div className="flex flex-col">
                                 <span className="font-black text-base">
                                     Beauty
@@ -62,8 +62,8 @@ const LoginPanel: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                                         </div>
                                         <input type="text" id="email-address-icon" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-8 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="09..." />
                                     </div>
-                                    <div className="flex flex-col space-y-6">
-                                        <span className="site-font">
+                                    <div className="flex flex-col space-y-4">
+                                        <span className="site-font text-justify	text-sm	">
                                             با ورود و یا ثبت نام ، <span className="underline underline-offset-4">شرایط و قوانین استفاده</span> از فروشگاه رو و <span className="underline underline-offset-4">قوانین حریم خصوصی</span> آن را می‌پذیرم
                                         </span>
                                         <button 

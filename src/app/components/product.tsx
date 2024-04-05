@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import losion from '../../../public/images/losion1.webp';
+import Link from 'next/link';
 
 const Product = (props: any) => {
     return (
-        <>
-            <div className="flex flex-col grow w-20 sm:w-24 md:w-48 bg-stone-100	drop-shadow-xl items-center py-2 px-3">
+        <Link href='/product' className='flex flex-col grow'>
+            <div className="flex flex-col grow w-full bg-stone-100	drop-shadow-xl items-center py-2 px-3">
                 <Image src={losion} alt='Product image' className='w-20 h-auto'/>
                 
                 <div>
@@ -37,7 +38,7 @@ const Product = (props: any) => {
                 </div>
             </div>
             
-        </>
+        </Link>
     )
 }
 

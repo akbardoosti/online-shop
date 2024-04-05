@@ -11,7 +11,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/autoplay';
 
-export default () => {
+export default function HeaderCarousel() {
   return (
     <Swiper
       // install Swiper modules
