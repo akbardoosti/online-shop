@@ -75,13 +75,13 @@ const Surprizing = (props: any) => {
                             </clipPath>
                         </defs>
                     </svg>
-                    <span style={{ fontFamily: 'Yekan' }}>
+                    <span className='site-font'>
                         هیجان انگیزهای امروز
                     </span>
                 </div>
                 <div className="continue">
                     <Link href={'next'} className="flex items-center gap-1">
-                        <span style={{ fontFamily: 'Yekan' }}>
+                        <span className='site-font'>
                             مشاهده همه
                         </span>
                         <svg width="5" height="9" viewBox="0 0 5 9" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -9,11 +9,11 @@ const Product = (props: any) => {
                 <Image src={losion} alt='Product image' className='w-20 h-auto'/>
                 
                 <div>
-                    <span style={{fontFamily: 'Yekan'}} className='text-xs text-zinc-500'>
+                    <span className='site-font text-xs text-zinc-500'>
                     شامپو تقویتی و ضد ریزش مو مخصوص خانم ها سینره 250 میل
                     </span>
                     <br/>
-                    <span style={{fontFamily: 'Yekan'}} className='stock text-orange-700 text-[10px] w-full'>تنها 4 عدد باقی مانده است</span>
+                    <span className='site-font stock text-orange-700 text-[10px] w-full'>تنها 4 عدد باقی مانده است</span>
                     <div className="product-footer flex justify-between">
                         <button>
                             <svg 

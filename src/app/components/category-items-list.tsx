@@ -5,49 +5,49 @@ const items: Array<{id: string, label: string, image: any, url: string}> = [
         id: 'losion',
         label: 'لوسیون',
         image: losion1,
-        url: 'link1'
+        url: 'category'
     },
     {
         id: 'shampoo',
         label: 'شامپو',
         image: losion1,
-        url: 'link1'
+        url: 'category'
     },
     {
         id: 'soup',
         label: 'صابون',
         image: losion1,
-        url: 'link1'
+        url: 'category'
     },
     {
         id: 'soup3',
         label: 'صابون',
         image: losion1,
-        url: 'link1'
+        url: 'category'
     },
     {
         id: 'soup4',
         label: 'صابون',
         image: losion1,
-        url: 'link1'
+        url: 'category'
     },
     {
         id: 'soup5',
         label: 'صابون',
         image: losion1,
-        url: 'link1'
+        url: 'category'
     },
     {
         id: 'soup6',
         label: 'صابون',
         image: losion1,
-        url: 'link1'
+        url: 'category'
     },
     {
         id: 'soup7',
         label: 'صابون',
         image: losion1,
-        url: 'link1'
+        url: 'category'
     }
 ]
 const CategoryItemsList = () => {

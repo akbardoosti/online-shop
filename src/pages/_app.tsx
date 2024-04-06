@@ -4,6 +4,8 @@ import type { AppProps } from 'next/app'
 import type { ReactElement, ReactNode } from 'react'
 import type { NextPage } from 'next';
 import {Inter} from "next/font/google";
+import {ThemeProvider} from "@material-tailwind/react";
+import Layout from "@/app/components/layout";
 const inter = Inter({ subsets: ["latin"] });
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
@@ -22,7 +24,14 @@ export default function App({
 
   return (
       <div dir="rtl" className={`${inter.className}`}>
-          {getLayout(<Component {...pageProps} />)}
+          <ThemeProvider>
+              <Layout>
+
+                  <Component {...pageProps} />
+              </Layout>
+
+              {/*{getLayout()}*/}
+          </ThemeProvider>
       </div>
   )
 }
