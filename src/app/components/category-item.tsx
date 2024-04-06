@@ -13,7 +13,7 @@ const CategoryItem = (props: any) => {
                             style={{maxWidth: '100%', height: 'auto'}}
                         />
                     </div>
-                    <span className="my-2" style={{fontFamily:'Yekan'}}>
+                    <span className="my-2 site-font">
                         {props.name}
                     </span>
                 </Link>

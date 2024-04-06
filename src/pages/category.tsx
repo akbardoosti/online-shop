@@ -9,7 +9,8 @@ import 'swiper/css/scrollbar';
 import 'swiper/css/autoplay';
 import Product from "@/app/components/product";
 import {useState} from "react";
-import { Pagination } from "flowbite-react";
+import {SimplePagination} from "@/app/components/circular-pagination";
+
 const productList = [
     {},
     {},
@@ -47,12 +48,24 @@ const CategoryPage = (props: any) => {
                 <div className="flex justify-between border-b-2 border-gray-400">
                     <div className="filter-sortby flex gap-1">
                         <span className="filter">
-                            <button className='site-font border-none outline-none '>
+                            <button className='site-font border-none outline-none flex gap-1 items-center'>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                     strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+                                  <path strokeLinecap="round" strokeLinejoin="round"
+                                        d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23-.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/>
+                                </svg>
+
                                 فیلتر
                             </button>
                         </span>
                         <div className="sortby site-font">
-                            <button className='site-font border-none outline-none '>
+                            <button className='site-font border-none outline-none flex gap-1 items-center'>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                     strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+                                    <path strokeLinecap="round" strokeLinejoin="round"
+                                          d="M3 7.5 7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5"/>
+                                </svg>
+
                                 مرتب سازی
                             </button>
                         </div>
@@ -70,15 +83,15 @@ const CategoryPage = (props: any) => {
                     {
                         productList.map(item => {
                             return (
-                                <div className="grow w-1/3 sm:w-3/12 md:w-2/12 self-center">
+                                <div className="grow w-full min-[400px]:w-1/3 md:w-3/12 lg:w-2/12 self-center">
                                     <Product></Product>
                                 </div>
                             )
                         })
                     }
                 </div>
-                <div className="flex overflow-x-auto sm:justify-center">
-                    <Pagination currentPage={currentPage} totalPages={100} onPageChange={onPageChange}/>
+                <div className="flex overflow-x-auto justify-center">
+                    <SimplePagination></SimplePagination>
                 </div>
             </div>
         </>

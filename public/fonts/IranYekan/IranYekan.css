@@ -1,0 +1,71 @@
+@font-face {
+    font-family: 'iranyekan';
+    font-style: normal;
+    font-weight: 700;
+    src: url(iranyekanwebboldfanum.e457130d.eot);
+    src: url(iranyekanwebboldfanum.e457130d.eot?#iefix) format("embedded-opentype"), url(iranyekanwebboldfanum.6269db6f.woff) format("woff"), url(iranyekanwebboldfanum.067f1f76.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: 'iranyekan';
+    font-style: normal;
+    font-weight: 100;
+    src: url(iranyekanwebthinfanum.ed2c206c.eot);
+    src: url(iranyekanwebthinfanum.ed2c206c.eot?#iefix) format("embedded-opentype"), url(iranyekanwebthinfanum.6c024be7.woff) format("woff"), url(iranyekanwebthinfanum.aa8123be.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: 'iranyekan';
+    font-style: normal;
+    font-weight: 300;
+    src: url(iranyekanweblightfanum.be61b015.eot);
+    src: url(iranyekanweblightfanum.be61b015.eot?#iefix) format("embedded-opentype"), url(iranyekanweblightfanum.bc3a3f35.woff) format("woff"), url(iranyekanweblightfanum.4d2168d7.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: 'iranyekan';
+    font-style: normal;
+    font-weight: 400;
+    src: url(iranyekanwebregularfanum.dbac8cd9.eot);
+    src: url(iranyekanwebregularfanum.dbac8cd9.eot?#iefix) format("embedded-opentype"), url(iranyekanwebregularfanum.173b94bf.woff) format("woff"), url(iranyekanwebregularfanum.e60ac6ea.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: 'iranyekan';
+    font-style: normal;
+    font-weight: 500;
+    src: url(iranyekanwebmediumfanum.0e6bf685.eot);
+    src: url(iranyekanwebmediumfanum.0e6bf685.eot?#iefix) format("embedded-opentype"), url(iranyekanwebmediumfanum.afb7b22a.woff) format("woff"), url(iranyekanwebmediumfanum.6d84b645.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: 'iranyekan';
+    font-style: normal;
+    font-weight: 800;
+    src: url(iranyekanwebextraboldfanum.77bca745.eot);
+    src: url(iranyekanwebextraboldfanum.77bca745.eot?#iefix) format("embedded-opentype"), url(iranyekanwebextraboldfanum.212a8f45.woff) format("woff"), url(iranyekanwebextraboldfanum.89d34ba2.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: 'iranyekan';
+    font-style: normal;
+    font-weight: 900;
+    src: url(iranyekanwebblackfanum.2fe34144.eot);
+    src: url(iranyekanwebblackfanum.2fe34144.eot?#iefix) format("embedded-opentype"), url(iranyekanwebblackfanum.e7383d7e.woff) format("woff"), url(iranyekanwebblackfanum.ff7ef260.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: 'iranyekan';
+    font-style: normal;
+    font-weight: 950;
+    src: url(iranyekanwebextrablackfanum.ff062b31.eot);
+    src: url(iranyekanwebextrablackfanum.ff062b31.eot?#iefix) format("embedded-opentype"), url(iranyekanwebextrablackfanum.6bd3c6ad.woff) format("woff"), url(iranyekanwebextrablackfanum.a8971e47.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: 'iranyekanEn';
+    font-style: normal;
+    font-weight: 400;
+    src: url(iranyekanwebregular.041b1f06.eot);
+    src: url(iranyekanwebregular.041b1f06.eot?#iefix) format("embedded-opentype"), url(iranyekanwebregular.b95439c1.woff) format("woff"), url(iranyekanwebregular.7eaa7edd.ttf) format("truetype")
+}

@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url(../../public/fonts/yekan/yekan.css);
+@import url(../../public/fonts/IranYekan/IranYekan.css);
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -38,5 +38,5 @@ body {
 }
 
 .site-font {
-  font-family: 'Yekan';
+  font-family: 'iranyekan' !important;
 }
