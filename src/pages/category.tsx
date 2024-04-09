@@ -10,6 +10,7 @@ import 'swiper/css/autoplay';
 import Product from "@/app/components/product";
 import {useState} from "react";
 import {SimplePagination} from "@/app/components/circular-pagination";
+import ProductFilter from "@/app/components/product-filter";
 
 const productList = [
     {},
@@ -23,10 +24,18 @@ const productList = [
     {},
     {},
 ]
+
 const CategoryPage = (props: any) => {
     const [currentPage, setCurrentPage] = useState(1);
+    const [isOpenDrawer, setIsOpenDrawer] = useState(false);
     const onPageChange = (page: number) => setCurrentPage(page);
-
+    function openModal() {
+        setIsOpenDrawer(true)
+    }
+    function onCloseDrawer(isClose: boolean) {
+        setIsOpenDrawer(isClose);
+        // return isClose
+    }
     return (
         <>
             <div className="flex flex-col">
@@ -48,7 +57,9 @@ const CategoryPage = (props: any) => {
                 <div className="flex justify-between border-b-2 border-gray-400">
                     <div className="filter-sortby flex gap-1">
                         <span className="filter">
-                            <button className='site-font border-none outline-none flex gap-1 items-center'>
+                            <button
+                                onClick={openModal}
+                                className='site-font border-none outline-none flex gap-1 items-center'>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                      strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
                                   <path strokeLinecap="round" strokeLinejoin="round"
@@ -81,9 +92,9 @@ const CategoryPage = (props: any) => {
                 </div>
                 <div className="product-list flex gap-2 flex-wrap justify-start my-3 border-b-2 border-gray-400 pb-4">
                     {
-                        productList.map(item => {
+                        productList.map((item, index) => {
                             return (
-                                <div className="grow w-full min-[400px]:w-1/3 md:w-3/12 lg:w-2/12 self-center">
+                                <div key={`product_${index}`} className="grow w-full min-[400px]:w-1/3 md:w-3/12 lg:w-2/12 self-center">
                                     <Product></Product>
                                 </div>
                             )
@@ -94,6 +105,7 @@ const CategoryPage = (props: any) => {
                     <SimplePagination></SimplePagination>
                 </div>
             </div>
+            <ProductFilter isOpen={isOpenDrawer} closeDrawer={onCloseDrawer}/>
         </>
     )
 }
