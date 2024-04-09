@@ -20,9 +20,6 @@ export function SimplePagination() {
     return (
         <div className="flex items-center gap-8 justify-between w-full">
             <IconButton
-                placeholder=''
-                onPointerEnterCapture
-                onPointerLeaveCapture
                 size="sm"
                 color='red'
                 variant="outlined"
@@ -31,16 +28,11 @@ export function SimplePagination() {
             >
                 <ArrowRightIcon strokeWidth={2} className="h-4 w-4" />
             </IconButton>
-            <Typography  placeholder=''
-                         onPointerEnterCapture
-                         onPointerLeaveCapture color="gray" className="font-normal site-font text-sm md:text-lg">
+            <Typography  color="gray" className="font-normal site-font text-sm md:text-lg">
                 صفحه <strong className="text-gray-900">{active}</strong> از {" "}
                 <strong className="text-gray-900">10</strong>
             </Typography>
             <IconButton
-                placeholder=''
-                onPointerEnterCapture
-                onPointerLeaveCapture
                 color='red'
                 size="sm"
                 variant="outlined"
