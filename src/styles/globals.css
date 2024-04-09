@@ -40,3 +40,8 @@ body {
 .site-font {
   font-family: 'iranyekan' !important;
 }
+
+[type='checkbox']:checked, [type='radio']:checked {
+  background-size: unset;
+  background-position: unset;
+}
