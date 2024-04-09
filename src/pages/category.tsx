@@ -11,6 +11,7 @@ import Product from "@/app/components/product";
 import {useState} from "react";
 import {SimplePagination} from "@/app/components/circular-pagination";
 import ProductFilter from "@/app/components/product-filter";
+import SortByFilter from "@/app/components/sortby-filter";
 
 const productList = [
     {},
@@ -26,15 +27,19 @@ const productList = [
 ]
 
 const CategoryPage = (props: any) => {
-    const [currentPage, setCurrentPage] = useState(1);
-    const [isOpenDrawer, setIsOpenDrawer] = useState(false);
-    const onPageChange = (page: number) => setCurrentPage(page);
-    function openModal() {
-        setIsOpenDrawer(true)
+    const [isOpenFilterDrawer, setIsOpenFilterDrawer] = useState(false);
+    const [isOpenSortByDrawer, setIsOpenSortByDrawer] = useState(false);
+    function openFilterDrawer() {
+        setIsOpenFilterDrawer(true)
     }
-    function onCloseDrawer(isClose: boolean) {
-        setIsOpenDrawer(isClose);
-        // return isClose
+    function openSortByDrawer() {
+        setIsOpenSortByDrawer(true)
+    }
+    function onCloseFilterDrawer(isClose: boolean) {
+        setIsOpenFilterDrawer(isClose);
+    }
+    function onCloseSortByDrawer(isClose: boolean) {
+        setIsOpenSortByDrawer(isClose);
     }
     return (
         <>
@@ -58,7 +63,7 @@ const CategoryPage = (props: any) => {
                     <div className="filter-sortby flex gap-1">
                         <span className="filter">
                             <button
-                                onClick={openModal}
+                                onClick={openFilterDrawer}
                                 className='site-font border-none outline-none flex gap-1 items-center'>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                      strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
@@ -70,7 +75,9 @@ const CategoryPage = (props: any) => {
                             </button>
                         </span>
                         <div className="sortby site-font">
-                            <button className='site-font border-none outline-none flex gap-1 items-center'>
+                            <button
+                                onClick={openSortByDrawer}
+                                className='site-font border-none outline-none flex gap-1 items-center'>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                      strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
                                     <path strokeLinecap="round" strokeLinejoin="round"
@@ -105,7 +112,8 @@ const CategoryPage = (props: any) => {
                     <SimplePagination></SimplePagination>
                 </div>
             </div>
-            <ProductFilter isOpen={isOpenDrawer} closeDrawer={onCloseDrawer}/>
+            <ProductFilter isOpen={isOpenFilterDrawer} closeDrawer={onCloseFilterDrawer}/>
+            <SortByFilter closeDrawer={onCloseSortByDrawer} isOpen={isOpenSortByDrawer}></SortByFilter>
         </>
     )
 }

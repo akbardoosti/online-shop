@@ -44,9 +44,6 @@ const ProductFilter: React.FC<ModalProps> = (
         // <React.Fragment>
 
         <Drawer
-            placeholder
-            onPointerEnterCapture
-            onPointerLeaveCapture
             placement="bottom"
             open={isOpen}
             onClose={closeDrawerBottom}
@@ -55,9 +52,6 @@ const ProductFilter: React.FC<ModalProps> = (
         >
             <div className="mb-6 flex items-center justify-between">
                 <Typography
-                    placeholder
-                    onPointerEnterCapture
-                    onPointerLeaveCapture
                     variant="h5"
                     color="blue-gray"
                     className='site-font'
@@ -67,9 +61,6 @@ const ProductFilter: React.FC<ModalProps> = (
                         </span>
                 </Typography>
                 <IconButton
-                    placeholder
-                    onPointerEnterCapture
-                    onPointerLeaveCapture
                     variant="text"
                     color="blue-gray"
                     onClick={closeDrawerBottom}
@@ -91,14 +82,8 @@ const ProductFilter: React.FC<ModalProps> = (
                 </IconButton>
             </div>
             <Accordion
-                placeholder
-                onPointerEnterCapture
-                onPointerLeaveCapture
                 open={open === 1} icon={<Icon id={1} open={open}/>}>
                 <AccordionHeader
-                    placeholder
-                    onPointerEnterCapture
-                    onPointerLeaveCapture
                     onClick={() => handleOpen(1)}>
                         <span className="site-font text-sm">
                             دسته بندی
@@ -111,14 +96,9 @@ const ProductFilter: React.FC<ModalProps> = (
                 </AccordionBody>
             </Accordion>
             <Accordion
-                placeholder
-                onPointerEnterCapture
-                onPointerLeaveCapture
                 open={open === 2} icon={<Icon id={2} open={open}/>}>
                 <AccordionHeader
-                    placeholder
-                    onPointerEnterCapture
-                    onPointerLeaveCapture
+
                     onClick={() => handleOpen(2)}>
                         <span className="site-font text-sm">
                             برند
@@ -131,14 +111,10 @@ const ProductFilter: React.FC<ModalProps> = (
                 </AccordionBody>
             </Accordion>
             <Accordion
-                placeholder
-                onPointerEnterCapture
-                onPointerLeaveCapture
+
                 open={open === 3} icon={<Icon id={3} open={open}/>}>
                 <AccordionHeader
-                    placeholder
-                    onPointerEnterCapture
-                    onPointerLeaveCapture
+
                     onClick={() => handleOpen(3)}>
                         <span className="site-font text-sm">
                             محدوده قیمت
@@ -158,9 +134,6 @@ const ProductFilter: React.FC<ModalProps> = (
                 </label>
                 <Switch
                     id='in-stock-goods'
-                    onPointerEnterCapture
-                    onPointerLeaveCapture
-                    crossOrigin
                 />
             </div>
             <div className='flex justify-between w-full'>
@@ -169,9 +142,6 @@ const ProductFilter: React.FC<ModalProps> = (
                 </label>
                 <Switch
                     id='free-shipping'
-                    onPointerEnterCapture
-                    onPointerLeaveCapture
-                    crossOrigin
                 />
             </div>
             <div className='flex justify-between w-full'>
@@ -181,9 +151,6 @@ const ProductFilter: React.FC<ModalProps> = (
                 <Switch
                     id='immediate-shipping'
                     className='flex justify-between w-full'
-                    onPointerEnterCapture
-                    onPointerLeaveCapture
-                    crossOrigin
                     />
             </div>
         </Drawer>
