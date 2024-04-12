@@ -5,7 +5,7 @@ import type {ReactElement, ReactNode} from 'react'
 import type {NextPage} from 'next';
 import {Inter} from "next/font/google";
 import {ThemeProvider} from "@material-tailwind/react";
-import Layout from "@/app/components/layout";
+import Layout from "@/app/components/layout/layout";
 
 const inter = Inter({subsets: ["latin"]});
 

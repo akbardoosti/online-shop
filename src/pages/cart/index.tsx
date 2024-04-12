@@ -1,4 +1,4 @@
-import Layout from "@/app/components/layout";
+import Layout from "@/app/components/layout/layout";
 import Image from "next/image";
 // Import Swiper styles
 import 'swiper/css';
@@ -7,7 +7,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/autoplay';
 import Head from "next/head";
-import cartImage from '../../public/images/cart-item.png';
+import cartImage from '../../../public/images/cart-item.png';
 
 const CartPage = (props: any) => {
     return (

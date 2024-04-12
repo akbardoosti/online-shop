@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Layout from "@/app/components/layout";
-import productImage from '../../public/images/product.png';
+import Layout from "@/app/components/layout/layout";
+import productImage from '../../../public/images/product.png';
 import Image from "next/image";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {A11y, Autoplay, Navigation, Scrollbar} from "swiper/modules";

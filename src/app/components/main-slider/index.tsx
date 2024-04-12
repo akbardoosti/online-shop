@@ -4,16 +4,16 @@ import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper/module
 import Image from 'next/image'
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import styles from '../styles/carousel.module.css';
-import mainStyles from '../styles/main-slider.module.css';
+import styles from '../../styles/carousel.module.css';
+import mainStyles from '../../styles/main-slider.module.css';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/autoplay';
-import image1 from '../../../public/images/image1.jpg';
-import image2 from '../../../public/images/image2.jpg';
+import image1 from '../../../../public/images/image1.jpg';
+import image2 from '../../../../public/images/image2.jpg';
 const MainSlider =  () => {
   return (
     <Swiper
