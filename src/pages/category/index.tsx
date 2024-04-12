@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Layout from "@/app/components/layout";
+import Layout from "@/app/components/layout/layout";
 
 // Import Swiper styles
 import 'swiper/css';

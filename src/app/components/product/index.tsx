@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import losion from '../../../public/images/losion1.webp';
+import losion from '../../../../public/images/losion1.webp';
 import Link from 'next/link';
 
 const Product = (props: any) => {

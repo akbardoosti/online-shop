@@ -1,10 +1,7 @@
 "use client";
 
 import React from 'react';
-import HeaderCarousel from "@/app/layouts/header-carousel";
 import Header from "@/app/layouts/header";
-// import Header from "@/app/layouts/header";
-// import HeaderCarousel from "@/app/layouts/header-carousel";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (

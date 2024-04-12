@@ -1,11 +1,11 @@
 "use client";
 import Link from "next/link";
-import surpImage from '../../../public/images/surprising.webp';
+import surpImage from '../../../../public/images/surprising.webp';
 import Image from "next/image";
-import Product from "./product";
-import { createContext, useEffect, useRef } from 'react';
+import Product from "../product";
+import { useEffect, useRef } from 'react';
 
-import { A11y, Autoplay, Navigation, Scrollbar } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 import { Swiper as SwiperComponent, SwiperSlide } from "swiper/react";
 import 'swiper/css';
 import 'swiper/css/navigation';

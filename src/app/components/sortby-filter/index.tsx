@@ -1,29 +1,13 @@
 import {
-    Accordion,
-    AccordionBody,
-    AccordionHeader, Card,
     Drawer,
-    IconButton, List, ListItem, Radio, Switch,
+    IconButton,
+    List,
+    ListItem,
     Typography
 } from "@material-tailwind/react";
 import React from "react";
-import Slider from "rc-slider";
 import 'rc-slider/assets/index.css';
 
-function Icon({ id, open }:{id: any, open: any}) {
-    return (
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={2}
-            stroke="currentColor"
-            className={`${id === open ? "rotate-180" : ""} h-5 w-5 transition-transform`}
-        >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-        </svg>
-    );
-}
 const SortByFilter: React.FC<ModalProps> = (
     {
         isOpen,
@@ -38,9 +22,7 @@ const SortByFilter: React.FC<ModalProps> = (
         closeDrawer(false)
     }
     return (
-        // <React.Fragment>
         <>
-            {isOpen}
             <Drawer
                 placement="bottom"
                 open={isOpen}
@@ -109,7 +91,6 @@ const SortByFilter: React.FC<ModalProps> = (
             </Drawer>
 
         </>
-        // </React.Fragment>
     )
 }
 

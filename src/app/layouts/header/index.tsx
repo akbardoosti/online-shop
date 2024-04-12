@@ -1,9 +1,9 @@
 "use client";
 import Link from 'next/link';
 import React, { useState } from 'react';
-import MenuSlide from '../components/menu-slide';
-import Search from '../components/search';
-import LoginPanel from '../components/login-panel';
+import MenuSlide from '../../components/menu-slide';
+import Search from '../../components/search';
+import LoginPanel from '../../components/login-panel';
 
 const Header: React.FC<{}> = (() => {
     const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
