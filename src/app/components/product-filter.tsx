@@ -40,10 +40,14 @@ const ProductFilter: React.FC<ModalProps> = (
     const closeDrawerBottom = () => {
         closeDrawer(false)
     }
+    function onCLick() {}
     return (
         // <React.Fragment>
 
         <Drawer
+            placeholder=''
+            onPointerEnterCapture={onCLick}
+            onPointerLeaveCapture={onCLick}
             placement="bottom"
             open={isOpen}
             onClose={closeDrawerBottom}
@@ -52,6 +56,9 @@ const ProductFilter: React.FC<ModalProps> = (
         >
             <div className="mb-6 flex items-center justify-between">
                 <Typography
+                    placeholder=''
+                    onPointerEnterCapture={onCLick}
+                    onPointerLeaveCapture={onCLick}
                     variant="h5"
                     color="blue-gray"
                     className='site-font'
@@ -61,6 +68,9 @@ const ProductFilter: React.FC<ModalProps> = (
                         </span>
                 </Typography>
                 <IconButton
+                    placeholder=''
+                    onPointerEnterCapture={onCLick}
+                    onPointerLeaveCapture={onCLick}
                     variant="text"
                     color="blue-gray"
                     onClick={closeDrawerBottom}
@@ -82,8 +92,14 @@ const ProductFilter: React.FC<ModalProps> = (
                 </IconButton>
             </div>
             <Accordion
+                placeholder=''
+                onPointerEnterCapture={onCLick}
+                onPointerLeaveCapture={onCLick}
                 open={open === 1} icon={<Icon id={1} open={open}/>}>
                 <AccordionHeader
+                    placeholder=''
+                    onPointerEnterCapture={onCLick}
+                    onPointerLeaveCapture={onCLick}
                     onClick={() => handleOpen(1)}>
                         <span className="site-font text-sm">
                             دسته بندی
@@ -96,9 +112,14 @@ const ProductFilter: React.FC<ModalProps> = (
                 </AccordionBody>
             </Accordion>
             <Accordion
+                placeholder=''
+                onPointerEnterCapture={onCLick}
+                onPointerLeaveCapture={onCLick}
                 open={open === 2} icon={<Icon id={2} open={open}/>}>
                 <AccordionHeader
-
+                    placeholder=''
+                    onPointerEnterCapture={onCLick}
+                    onPointerLeaveCapture={onCLick}
                     onClick={() => handleOpen(2)}>
                         <span className="site-font text-sm">
                             برند
@@ -111,9 +132,15 @@ const ProductFilter: React.FC<ModalProps> = (
                 </AccordionBody>
             </Accordion>
             <Accordion
+                placeholder=''
+                onPointerEnterCapture={onCLick}
+                onPointerLeaveCapture={onCLick}
 
                 open={open === 3} icon={<Icon id={3} open={open}/>}>
                 <AccordionHeader
+                    placeholder=''
+                    onPointerEnterCapture={onCLick}
+                    onPointerLeaveCapture={onCLick}
 
                     onClick={() => handleOpen(3)}>
                         <span className="site-font text-sm">
@@ -133,6 +160,9 @@ const ProductFilter: React.FC<ModalProps> = (
                     فقط کالاهای موجود
                 </label>
                 <Switch
+                    onPointerEnterCapture={onCLick()}
+                    onPointerLeaveCapture={onCLick()}
+                    crossOrigin={''}
                     id='in-stock-goods'
                 />
             </div>
@@ -141,6 +171,9 @@ const ProductFilter: React.FC<ModalProps> = (
                     فقط کالاهای ارسال رایگان
                 </label>
                 <Switch
+                    onPointerEnterCapture={onCLick()}
+                    onPointerLeaveCapture={onCLick()}
+                    crossOrigin={''}
                     id='free-shipping'
                 />
             </div>
@@ -149,6 +182,9 @@ const ProductFilter: React.FC<ModalProps> = (
                     ارسال فوری
                 </label>
                 <Switch
+                    onPointerEnterCapture={onCLick()}
+                    onPointerLeaveCapture={onCLick()}
+                    crossOrigin={''}
                     id='immediate-shipping'
                     className='flex justify-between w-full'
                     />
