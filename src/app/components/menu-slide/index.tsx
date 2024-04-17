@@ -39,6 +39,9 @@ const MenuSlide: React.FC<SlideOverProps> = ({ isOpen, onClose }) => {
   const closeDrawer = () => {
     onClose(false)
   }
+  function onClick() {
+
+  }
   return (
       <Drawer
           placement="right"
@@ -46,13 +49,23 @@ const MenuSlide: React.FC<SlideOverProps> = ({ isOpen, onClose }) => {
           onClose={closeDrawer}
           className="p-4"
           size={450}
+          placeholder=''
+          onPointerEnterCapture={onClick()}
+          onPointerLeaveCapture={onClick()}
       >
 
         <div className="mb-6 flex items-center justify-between">
-          <Typography variant="h5" color="blue-gray" className='site-font'>
+          <Typography
+              placeholder=''
+              onPointerEnterCapture={onClick()}
+              onPointerLeaveCapture={onClick()}
+              variant="h5" color="blue-gray" className='site-font'>
             فهرست
           </Typography>
           <IconButton
+              placeholder=''
+              onPointerEnterCapture={onClick()}
+              onPointerLeaveCapture={onClick()}
               variant="text"
               color="blue-gray"
               onClick={closeDrawer}
@@ -74,9 +87,16 @@ const MenuSlide: React.FC<SlideOverProps> = ({ isOpen, onClose }) => {
           </IconButton>
         </div>
         <div className="menu-items flex flex-col gap-2">
-          <Accordion open={open === 1} icon={<Icon id={1} open={open} />}
+          <Accordion
+              placeholder=''
+              onPointerEnterCapture={onClick()}
+              onPointerLeaveCapture={onClick()}
+              open={open === 1} icon={<Icon id={1} open={open} />}
           >
             <AccordionHeader
+                placeholder=''
+                onPointerEnterCapture={onClick()}
+                onPointerLeaveCapture={onClick()}
                 onClick={() => handleOpen(1)}
                 className='bg-emerald-50 rounded-tl-lg rounded-br-lg text-sm site-font flex p-0 items-center'
             >

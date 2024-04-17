@@ -21,9 +21,15 @@ const SortByFilter: React.FC<ModalProps> = (
         setSelected(value);
         closeDrawer(false)
     }
+    function onCLick() {
+
+    }
     return (
         <>
             <Drawer
+                placeholder=''
+                onPointerEnterCapture={onCLick}
+                onPointerLeaveCapture={onCLick}
                 placement="bottom"
                 open={isOpen}
                 onClose={closeDrawerBottom}
@@ -32,6 +38,9 @@ const SortByFilter: React.FC<ModalProps> = (
             >
                 <div className="mb-6 flex items-center justify-between">
                     <Typography
+                        placeholder=''
+                        onPointerEnterCapture={onCLick}
+                        onPointerLeaveCapture={onCLick}
                         variant="h5"
                         color="blue-gray"
                         className='site-font'
@@ -41,6 +50,9 @@ const SortByFilter: React.FC<ModalProps> = (
                         </span>
                     </Typography>
                     <IconButton
+                        placeholder=''
+                        onPointerEnterCapture={onCLick}
+                        onPointerLeaveCapture={onCLick}
                         variant="text"
                         color="blue-gray"
                         onClick={closeDrawerBottom}
@@ -63,33 +75,56 @@ const SortByFilter: React.FC<ModalProps> = (
                 </div>
                 <div className="flex w-full">
                     <List
+                        placeholder=''
+                        onPointerEnterCapture={onCLick}
+                        onPointerLeaveCapture={onCLick}
                         className='w-full site-font'
                     >
-                        <ListItem selected={selected === 1} onClick={() => setSelectedItem(1)}>
+                        <ListItem
+                            placeholder=''
+                            onPointerEnterCapture={onCLick}
+                            onPointerLeaveCapture={onCLick}
+                            selected={selected === 1} onClick={() => setSelectedItem(1)}>
                             پرتخفیف ترین
                         </ListItem>
-                        <ListItem selected={selected === 2} onClick={() => setSelectedItem(2)}>
+                        <ListItem
+                            placeholder=''
+                            onPointerEnterCapture={onCLick}
+                            onPointerLeaveCapture={onCLick}
+                            selected={selected === 2} onClick={() => setSelectedItem(2)}>
                             جدیدترین
                         </ListItem>
-                        <ListItem selected={selected === 3} onClick={() => setSelectedItem(3)}>
+                        <ListItem
+                            placeholder=''
+                            onPointerEnterCapture={onCLick}
+                            onPointerLeaveCapture={onCLick}
+                            selected={selected === 3} onClick={() => setSelectedItem(3)}>
                             پرفروش ترین
                         </ListItem>
-                        <ListItem selected={selected === 3} onClick={() => setSelectedItem(3)}>
+                        <ListItem
+                            placeholder=''
+                            onPointerEnterCapture={onCLick}
+                            onPointerLeaveCapture={onCLick}
+                            selected={selected === 3} onClick={() => setSelectedItem(3)}>
                             ارزان ترین
                         </ListItem>
-                        <ListItem selected={selected === 3} onClick={() => setSelectedItem(3)}>
+                        <ListItem
+                            placeholder=''
+                            onPointerEnterCapture={onCLick}
+                            onPointerLeaveCapture={onCLick}
+                            selected={selected === 3} onClick={() => setSelectedItem(3)}>
                             گران ترین
                         </ListItem>
-                        <ListItem selected={selected === 3} onClick={() => setSelectedItem(3)}>
+                        <ListItem
+                            placeholder=''
+                            onPointerEnterCapture={onCLick}
+                            onPointerLeaveCapture={onCLick}
+                            selected={selected === 3} onClick={() => setSelectedItem(3)}>
                             پربیننده ترین
                         </ListItem>
                     </List>
                 </div>
-
-
-
             </Drawer>
-
         </>
     )
 }

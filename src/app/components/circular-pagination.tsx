@@ -16,6 +16,9 @@ export function SimplePagination() {
 
         setActive(active - 1);
     };
+    function onClick() {
+
+    }
 
     return (
         <div className="flex items-center gap-8 justify-between w-full">
@@ -25,14 +28,24 @@ export function SimplePagination() {
                 variant="outlined"
                 onClick={prev}
                 disabled={active === 1}
+                placeholder=''
+                onPointerEnterCapture={onClick()}
+                onPointerLeaveCapture={onClick()}
             >
                 <ArrowRightIcon strokeWidth={2} className="h-4 w-4" />
             </IconButton>
-            <Typography  color="gray" className="font-normal site-font text-sm md:text-lg">
+            <Typography
+                placeholder=''
+                onPointerEnterCapture={onClick()}
+                onPointerLeaveCapture={onClick()}
+                color="gray" className="font-normal site-font text-sm md:text-lg">
                 صفحه <strong className="text-gray-900">{active}</strong> از {" "}
                 <strong className="text-gray-900">10</strong>
             </Typography>
             <IconButton
+                placeholder=''
+                onPointerEnterCapture={onClick()}
+                onPointerLeaveCapture={onClick()}
                 color='red'
                 size="sm"
                 variant="outlined"
