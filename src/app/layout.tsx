@@ -6,6 +6,7 @@ const HeaderCarousel = dynamic(() => import('./layouts/header-carousel'), { ssr:
 import headerClasses from './styles/header.module.css';
 import Header from "./layouts/header";
 import "../styles/globals.css";
+import {useRouter} from "next/router";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
