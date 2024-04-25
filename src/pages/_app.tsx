@@ -6,6 +6,7 @@ import type {NextPage} from 'next';
 import {Inter} from "next/font/google";
 import {ThemeProvider} from "@material-tailwind/react";
 import Layout from "@/app/components/layout/layout";
+import {RouterProvider} from "@/app/components/router-provider";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -24,12 +25,14 @@ export default function App(
     }: AppPropsWithLayout) {
 
     return (
-        <div dir="rtl" className={`${inter.className}`}>
-            <ThemeProvider>
-                <Layout>
-                    <Component {...pageProps} />
-                </Layout>
-            </ThemeProvider>
-        </div>
+        <RouterProvider>
+            <div dir="rtl" className={`${inter.className} overflow-y-hidden`} style={{position:"relative"}}>
+                <ThemeProvider>
+                    {/*<Layout>*/}
+                        <Component {...pageProps} />
+                    {/*</Layout>*/}
+                </ThemeProvider>
+            </div>
+        </RouterProvider>
     )
 }

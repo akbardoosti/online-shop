@@ -5,7 +5,7 @@ import MenuSlide from '../../components/menu-slide';
 import Search from '../../components/search';
 import LoginPanel from '../../components/login-panel';
 
-const Header: React.FC<{}> = (() => {
+const Header: React.FC<{}> = ((router) => {
     const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
     const toggleSlideOver = () => {
         setIsSlideOverOpen(!isSlideOverOpen);
@@ -16,8 +16,11 @@ const Header: React.FC<{}> = (() => {
     }
     const [isLoginOpen, setIsLoginOpen] = useState(false);
     const toggleLoginPanel = () => {
-        setIsLoginOpen(!isLoginOpen);
-    } 
+        let isLoggedIn = localStorage.getItem('access_token');
+        if (!isLoggedIn) {
+            setIsLoginOpen(!isLoginOpen);
+        }
+    }
     return (
         <>
             <div className="flex grow items-center space-x-4">
@@ -75,7 +78,7 @@ const Header: React.FC<{}> = (() => {
             </div>
             <MenuSlide isOpen={isSlideOverOpen} onClose={toggleSlideOver} />
             <Search isOpen={isSearchOpen} onClose={toggleMenu} />
-            <LoginPanel isOpen={isLoginOpen} onClose={toggleLoginPanel} />
+            <LoginPanel isOpen={isLoginOpen} onClose={toggleLoginPanel} router={router} />
         </>
     )
 })
