@@ -19,7 +19,7 @@ interface Prop {
     totalPage: number,
     totalCount: number,
     onDelete?: (id: string) => void,
-    onEdit?: (id: string) => void,
+    onEdit?: (data: any) => void,
     onPageChange?: ({page, size}: { page: number, size: number }) => void,
     onSearch?: (text: string) => void
 }
@@ -107,7 +107,7 @@ export function SortableTable(
                         </th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody className={'site-font'}>
                     {data.map(
                         (rawData: any, index) => {
                             const isLast = index === data.length - 1;
@@ -141,6 +141,7 @@ export function SortableTable(
                                         >
                                             <IconButton
                                                 color={'primary'}
+                                                onClick={() => onEdit ? onEdit(rawData) : ''}
                                             >
                                                 <EditOutlined/>
                                             </IconButton>

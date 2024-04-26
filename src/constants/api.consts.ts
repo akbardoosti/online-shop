@@ -1,5 +1,9 @@
 export const API_BASE_URL = 'http://185.231.115.153:4040';
 export const LOGIN_API = API_BASE_URL + '/api/v1/User/Authenticate';
+export const CREATE_CUSTOMER_API = '/api/v1/CreateCustomer';
+export const DELETE_CUSTOMER_API = '/api/v1/DeleteCustomer';
+export const GET_CUSTOMERS_API = '/api/v1/GetCustomersWithPagination';
+export const UPDATE_CUSTOMER_API = '/api/v1/UpdateCustomer';
 export const CREATE_USER_API = '/api/v1/CreateUser';
 export const DELETE_USER_API = '/api/v1/DeleteUser';
 export const BULK_USER_IMPORT_API = '/api/v1/ExcelUserImport';

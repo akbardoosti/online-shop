@@ -7,7 +7,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 
-import {CREATE_BRAND_API, DELETE_BRAND_API, GET_BRAND_API, LOGIN_API} from "@/constants/api.consts";
+import {CREATE_BRAND_API, DELETE_BRAND_API, GET_BRAND_API} from "@/constants/api.consts";
 import {DataTableColumn} from "@/types/data-table";
 import apiService from "@/services/api-service";
 import {ConfirmDialog} from "@/app/components/confirm-dialog";
@@ -175,7 +175,6 @@ const Brands = () => {
                     setIsOpenDelete(!isOpenDelete)
                 }}
                 onPageChange={(event) => {
-                    console.log(event.size)
                     getBrandList(event.page, event.size)
                 }}
                 onSearch={(text)=>{
