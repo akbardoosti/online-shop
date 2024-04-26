@@ -5,8 +5,8 @@ import type {ReactElement, ReactNode} from 'react'
 import type {NextPage} from 'next';
 import {Inter} from "next/font/google";
 import {ThemeProvider} from "@material-tailwind/react";
-import Layout from "@/app/components/layout/layout";
 import {RouterProvider} from "@/app/components/router-provider";
+import Head from "next/head";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -26,7 +26,10 @@ export default function App(
 
     return (
         <RouterProvider>
-            <div dir="rtl" className={`${inter.className} overflow-y-hidden`} style={{position:"relative"}}>
+            <Head>
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            </Head>
+            <div dir="rtl" className={`overflow-y-hidden`} style={{position:"relative"}}>
                 <ThemeProvider>
                     {/*<Layout>*/}
                         <Component {...pageProps} />

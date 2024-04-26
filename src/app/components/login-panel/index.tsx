@@ -1,6 +1,5 @@
 import {LOGIN_API} from "@/constants/api.consts";
-import {FormEvent, useState} from "react";
-import {useRouter} from "next/router";
+import {FormEvent} from "react";
 
 interface ModalProps {
     isOpen: boolean;
@@ -32,19 +31,15 @@ const LoginPanel: React.FC<ModalProps> = ({isOpen, onClose, router}) => {
 
     return (
         <div>
-            {/* Overlay */}
             <div
-                className={`fixed inset-0 bg-black z-50 opacity-50 transition-opacity ${isOpen ? 'block' : 'hidden'
-                }`}
+                className={`fixed inset-0 bg-black z-50 opacity-50 transition-opacity ${isOpen ? 'block' : 'hidden'}`}
                 onClick={onClose}
             ></div>
 
-            {/* Modal */}
             <div
-                className={`fixed z-50 inset-0 block items-center justify-center transition-opacity ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
-                }`}
+                className={`fixed z-50 inset-0 block items-center justify-center transition-opacity ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
             >
-                <div className="bg-white p-4 rounded-lg shadow-lg rounded-none h-full">
+                <div className="bg-white p-4 shadow-lg rounded-none h-full">
                     <div className="flex justify-end items-center">
                         <button onClick={onClose} className="text-gray-500 hover:text-gray-600 focus:outline-none">
                             <svg
@@ -64,7 +59,7 @@ const LoginPanel: React.FC<ModalProps> = ({isOpen, onClose, router}) => {
                         </button>
                     </div>
                     <div className="modal-content h-full">
-                        <div className="flex flex-col h-full justify-center items-center h-full w-full space-y-5">
+                        <div className="flex flex-col h-full justify-center items-center w-full space-y-5">
                             <div className="flex flex-col">
                                 <span className="font-black text-base">
                                     Beauty

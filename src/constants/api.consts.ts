@@ -1,4 +1,4 @@
-export const API_BASE_URL = process.env.API_URL;
+export const API_BASE_URL = 'http://185.231.115.153:4040';
 export const LOGIN_API = API_BASE_URL + '/api/v1/User/Authenticate';
 export const CREATE_USER_API = '/api/v1/CreateUser';
 export const DELETE_USER_API = '/api/v1/DeleteUser';

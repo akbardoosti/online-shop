@@ -41,27 +41,25 @@ export function SortableTable(
         <div className="h-full w-full">
             <div className="p-3 flex">
                 <div className="flex grow items-center justify-between gap-4 md:flex-row pt-4">
-                    <FormControl variant="standard" className={'w-full'}>
-                        <InputLabel
-                            htmlFor="input-with-icon-adornment"
-                            className={'site-font right-0 left-[unset]'}
-                        >
-                            جستجو
-                        </InputLabel>
-                        <Input
-                            id="input-with-icon-adornment"
-                            startAdornment={
-                                <InputAdornment position="start">
-                                    <SearchOutlined/>
-                                </InputAdornment>
+                    <Input
+                        startAdornment={
+                            <InputAdornment position="start">
+                                <SearchOutlined/>
+                            </InputAdornment>
+                        }
+                        placeholder={'جستجو'}
+                        className={'site-font w-full'}
+                        onInput={(event) => {
+                            var text = (event.target as any)?.value;
+                            if (text) {
+                                onSearch ? onSearch(text) : '';
+                            } else {
+                                onSearch ? onSearch('') : '';
                             }
-                            className={'site-font'}
-                            onChange={(event)=> {
-                                var text = event.target.value;
-                                return onSearch ? onSearch(text):'';
-                            }}
-                        />
-                    </FormControl>
+                        }}
+
+                        type={'text'}
+                    />
 
                     <TextField
                         id="standard-select-currency"
@@ -71,9 +69,10 @@ export function SortableTable(
                         className={'min-w-10'}
                         inputProps={{className: 'site-font min-w-10'}}
                         InputLabelProps={{className: 'site-font focus:translate-x-0'}}
-                        onChange={(event)=> {
-                            onPageChange?onPageChange({page, size: parseInt(event.target.value)}):''
+                        onChange={(event) => {
+                            onPageChange ? onPageChange({page, size: parseInt(event.target.value)}) : ''
                         }}
+                        aria-invalid={false}
                     >
                         {pagesCount.map((option, index) => (
                             <MenuItem key={index} value={option} className={'site-font'}>
@@ -115,26 +114,25 @@ export function SortableTable(
                             const classes = isLast
                                 ? "p-4"
                                 : "p-4 border-b border-blue-gray-50";
-                            const html = columns.map((column, ind) => {
-                                return <td className={classes} key={`inner-${rawData['id']}`}>
-                                    <div className="flex items-center gap-3">
-                                        <div className="flex flex-col">
+
+
+                            return (
+                                <tr key={rawData['id'] ?? Math.random().toString()}>
+
+                                    {columns.map((column, ind) => {
+                                        return <td className={classes} key={ind}>
+                                            <div className="flex items-center gap-3">
+                                                <div className="flex flex-col">
                                             <span
                                                 color="blue-gray"
                                                 className="font-normal"
                                             >
                                                 {rawData[column.name]}
                                             </span>
-                                        </div>
-                                    </div>
-                                </td>
-                            })
-
-
-                            return (
-                                <tr key={rawData['id'] ?? Math.random().toString()}>
-
-                                    {html}
+                                                </div>
+                                            </div>
+                                        </td>
+                                    })}
                                     <td className={classes}>
                                         <Tooltip
                                             className={'site-font'}
@@ -152,7 +150,7 @@ export function SortableTable(
                                             title="حذف "
                                             arrow
                                             PopperProps={{
-                                                className:'site-font'
+                                                className: 'site-font'
                                             }}
                                         >
                                             <IconButton
