@@ -7,6 +7,8 @@ import {Inter} from "next/font/google";
 import {ThemeProvider} from "@material-tailwind/react";
 import {RouterProvider} from "@/app/components/router-provider";
 import Head from "next/head";
+import {LocalizationProvider} from "@mui/x-date-pickers";
+import {AdapterDateFnsJalali} from "@mui/x-date-pickers/AdapterDateFnsJalali";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -31,9 +33,12 @@ export default function App(
             </Head>
             <div dir="rtl" className={`overflow-y-hidden`} style={{position:"relative"}}>
                 <ThemeProvider>
-                    {/*<Layout>*/}
+                    <LocalizationProvider dateAdapter={AdapterDateFnsJalali}>
+                        {/*<Layout>*/}
                         <Component {...pageProps} />
-                    {/*</Layout>*/}
+                        {/*</Layout>*/}
+                    </LocalizationProvider>
+
                 </ThemeProvider>
             </div>
         </RouterProvider>
