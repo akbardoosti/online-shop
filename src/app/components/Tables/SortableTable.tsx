@@ -1,9 +1,9 @@
 import Tooltip from '@mui/material/Tooltip';
 import Input from '@mui/material/Input';
 
-import React from "react";
-import {FormControl, InputAdornment, InputLabel, MenuItem, TextField} from "@mui/material";
-import {DeleteOutline, EditOutlined, SearchOutlined,} from "@mui/icons-material";
+import React, {JSX} from "react";
+import {Fade, FormControl, InputAdornment, InputLabel, Menu, MenuItem, TextField} from "@mui/material";
+import {DeleteOutline, EditOutlined, MoreVertOutlined, SearchOutlined,} from "@mui/icons-material";
 import Button from "@mui/material/Button";
 import IconButton from '@mui/material/IconButton';
 
@@ -21,7 +21,12 @@ interface Prop {
     onDelete?: (id: string) => void,
     onEdit?: (data: any) => void,
     onPageChange?: ({page, size}: { page: number, size: number }) => void,
-    onSearch?: (text: string) => void
+    onSearch?: (text: string) => void,
+    menuItems?: {
+        icon: JSX.Element,
+        label: string,
+        onClick: (id: string) => void
+    }[]
 }
 
 export function SortableTable(
@@ -35,8 +40,17 @@ export function SortableTable(
         data = [],
         onPageChange,
         totalCount,
-        onSearch
+        onSearch,
+        menuItems = []
     }: Prop) {
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const openMenu = Boolean(anchorEl);
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
     return (
         <div className="h-full w-full">
             <div className="p-3 flex">
@@ -134,33 +148,55 @@ export function SortableTable(
                                         </td>
                                     })}
                                     <td className={classes}>
-                                        <Tooltip
-                                            className={'site-font'}
-                                            title="ویرایش"
-                                            arrow
+                                        <IconButton
+                                            id="fade-button"
+                                            aria-controls={openMenu ? 'fade-menu' : undefined}
+                                            aria-haspopup="true"
+                                            aria-expanded={openMenu ? 'true' : undefined}
+                                            onClick={handleClick}
                                         >
-                                            <IconButton
-                                                color={'primary'}
-                                                onClick={() => onEdit ? onEdit(rawData) : ''}
-                                            >
-                                                <EditOutlined/>
-                                            </IconButton>
-                                        </Tooltip>
-                                        <Tooltip
-                                            className={'site-font'}
-                                            title="حذف "
-                                            arrow
-                                            PopperProps={{
-                                                className: 'site-font'
+                                            <MoreVertOutlined />
+                                        </IconButton>
+                                        <Menu
+                                            id="fade-menu"
+                                            MenuListProps={{
+                                                'aria-labelledby': 'fade-button',
                                             }}
+                                            anchorEl={anchorEl}
+                                            open={openMenu}
+                                            onClose={handleClose}
+                                            TransitionComponent={Fade}
+                                            dir={'rtl'}
                                         >
-                                            <IconButton
-                                                color={'error'}
-                                                onClick={() => onDelete ? onDelete(rawData['id']) : ''}
-                                            >
-                                                <DeleteOutline/>
-                                            </IconButton>
-                                        </Tooltip>
+                                            <MenuItem onClick={()=>{
+                                                onEdit ? onEdit(rawData) : '';
+                                                handleClose();
+                                            }} className={'site-font'}>
+                                                <EditOutlined  className={'text-blue-700'}/>
+                                                ویرایش
+                                            </MenuItem>
+                                            <MenuItem onClick={()=> {
+                                                onDelete ? onDelete(rawData['id']) : '';
+                                                handleClose();
+                                            }} className={'site-font'}>
+                                                <DeleteOutline className={'text-red-700'}/>
+                                                حذف
+                                            </MenuItem>
+                                            {
+                                                (menuItems ?? [])?.map((item)=>{
+                                                    return (<MenuItem onClick={()=> {
+                                                        item.onClick(rawData['id']);
+                                                        handleClose();
+                                                    }}
+                                                                      className={'site-font'}
+                                                    >
+                                                        {item.icon}
+                                                        {item.label}
+                                                    </MenuItem>)
+                                                })
+                                            }
+
+                                        </Menu>
                                     </td>
                                 </tr>
                             );

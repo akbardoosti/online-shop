@@ -19,7 +19,6 @@ import {ConfirmDialog} from "@/app/components/confirm-dialog";
 import Head from "next/head";
 import {TextField} from "@mui/material";
 import moment from "moment";
-import {LaptopMacOutlined, WorkspacesOutlined} from "@mui/icons-material";
 
 const columns: DataTableColumn[] = [
     {label: 'نام', name: 'name'},
@@ -34,7 +33,7 @@ const defaultHub = {
     phoneNumber: '',
     address: '',
 }
-const Hubs = () => {
+const HubPages = () => {
     const [open, setOpen] = React.useState(false);
     const [hubList, setHubList] = React.useState<any[]>([]);
     const [isOpenDelete, setIsOpenDelete] = React.useState(false);
@@ -271,18 +270,6 @@ const Hubs = () => {
                     getHubList(page, pageSize);
                 }}
                 totalCount={totalCount}
-                menuItems={[
-                    {
-                        label: 'مدیریت صفحات',
-                        icon: <LaptopMacOutlined className={'text-green-800'}/>,
-                        onClick: (id) => alert(id)
-                    },
-                    {
-                        label: 'مدیریت دسته بندی محصولات',
-                        icon: <WorkspacesOutlined className={'text-indigo-700'}/>,
-                        onClick: (id) => alert(id)
-                    },
-                ]}
             />
             <ConfirmDialog
                 isOpen={isOpenDelete}
@@ -295,4 +282,4 @@ const Hubs = () => {
     )
 }
 
-export default Hubs;
+export default HubPages;
