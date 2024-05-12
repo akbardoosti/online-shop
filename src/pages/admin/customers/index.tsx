@@ -6,13 +6,6 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-
-import {
-    CREATE_CUSTOMER_API,
-    DELETE_CUSTOMER_API,
-    GET_CUSTOMERS_API,
-    UPDATE_CUSTOMER_API
-} from "@/constants/api.consts";
 import {DataTableColumn} from "@/types/data-table";
 import apiService from "@/services/api-service";
 import {ConfirmDialog} from "@/app/components/confirm-dialog";
@@ -20,6 +13,7 @@ import Head from "next/head";
 import {MenuItem, TextField} from "@mui/material";
 import {MobileDatePicker} from "@mui/x-date-pickers";
 import moment from "moment";
+import {CustomerAPI} from "@/constants/api.consts";
 
 const columns: DataTableColumn[] = [
     {label: 'نام', name: 'firstName'},
@@ -91,7 +85,7 @@ const Customers = () => {
                 ...payload
             }
             const response = await apiService.put(
-                UPDATE_CUSTOMER_API,
+                CustomerAPI.UPDATE,
                 newPayload
             )
             if (response.status == 204) {
@@ -101,7 +95,7 @@ const Customers = () => {
             }
         } else {
             const response = await apiService.post(
-                CREATE_CUSTOMER_API,
+                CustomerAPI.CREATE,
                 payload
             )
             if (response.status == 200) {
@@ -120,7 +114,8 @@ const Customers = () => {
                 FirstName: findText
             }
         }
-        const response = await apiService.get(GET_CUSTOMERS_API,
+        const response = await apiService.get(
+            CustomerAPI.GET_LIST,
             {
                 params: {
                     ...filter,
@@ -141,7 +136,7 @@ const Customers = () => {
 
     async function deleteItem(id: string) {
         const response = await apiService.delete(
-            DELETE_CUSTOMER_API,
+            CustomerAPI.DELETE,
             {
                 params: {
                     id: id
@@ -304,6 +299,7 @@ const Customers = () => {
 
             <SortableTable
                 data={customerList}
+                disableMenu={false}
                 columns={columns}
                 totalPage={totalPage}
                 page={page}

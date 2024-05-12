@@ -1,7 +1,7 @@
 import Tooltip from '@mui/material/Tooltip';
 import Input from '@mui/material/Input';
 
-import React, {JSX} from "react";
+import React, {JSX, useState} from "react";
 import {Fade, FormControl, InputAdornment, InputLabel, Menu, MenuItem, TextField} from "@mui/material";
 import {DeleteOutline, EditOutlined, MoreVertOutlined, SearchOutlined,} from "@mui/icons-material";
 import Button from "@mui/material/Button";
@@ -18,6 +18,7 @@ interface Prop {
     size: number,
     totalPage: number,
     totalCount: number,
+    disableMenu: boolean,
     onDelete?: (id: string) => void,
     onEdit?: (data: any) => void,
     onPageChange?: ({page, size}: { page: number, size: number }) => void,
@@ -40,11 +41,13 @@ export function SortableTable(
         data = [],
         onPageChange,
         totalCount,
+        disableMenu,
         onSearch,
         menuItems = []
     }: Prop) {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const openMenu = Boolean(anchorEl);
+    const [selectedRow, setSelectedRow] = useState<any>();
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
@@ -114,11 +117,14 @@ export function SortableTable(
                                 {head.label}{" "}
                             </th>
                         ))}
-                        <th
-                            className="site-font cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
-                        >
-                            عملیات
-                        </th>
+                        {
+                            ! disableMenu && <th
+                                className="site-font cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
+                            >
+                                عملیات
+                            </th>
+                        }
+
                     </tr>
                     </thead>
                     <tbody className={'site-font'}>
@@ -128,11 +134,8 @@ export function SortableTable(
                             const classes = isLast
                                 ? "p-4"
                                 : "p-4 border-b border-blue-gray-50";
-
-
                             return (
                                 <tr key={rawData['id'] ?? Math.random().toString()}>
-
                                     {columns.map((column, ind) => {
                                         return <td className={classes} key={ind}>
                                             <div className="flex items-center gap-3">
@@ -147,63 +150,70 @@ export function SortableTable(
                                             </div>
                                         </td>
                                     })}
-                                    <td className={classes}>
-                                        <IconButton
-                                            id="fade-button"
-                                            aria-controls={openMenu ? 'fade-menu' : undefined}
-                                            aria-haspopup="true"
-                                            aria-expanded={openMenu ? 'true' : undefined}
-                                            onClick={handleClick}
-                                        >
-                                            <MoreVertOutlined />
-                                        </IconButton>
-                                        <Menu
-                                            id="fade-menu"
-                                            MenuListProps={{
-                                                'aria-labelledby': 'fade-button',
-                                            }}
-                                            anchorEl={anchorEl}
-                                            open={openMenu}
-                                            onClose={handleClose}
-                                            TransitionComponent={Fade}
-                                            dir={'rtl'}
-                                        >
-                                            <MenuItem onClick={()=>{
-                                                onEdit ? onEdit(rawData) : '';
-                                                handleClose();
-                                            }} className={'site-font'}>
-                                                <EditOutlined  className={'text-blue-700'}/>
-                                                ویرایش
-                                            </MenuItem>
-                                            <MenuItem onClick={()=> {
-                                                onDelete ? onDelete(rawData['id']) : '';
-                                                handleClose();
-                                            }} className={'site-font'}>
-                                                <DeleteOutline className={'text-red-700'}/>
-                                                حذف
-                                            </MenuItem>
-                                            {
-                                                (menuItems ?? [])?.map((item)=>{
-                                                    return (<MenuItem onClick={()=> {
-                                                        item.onClick(rawData['id']);
-                                                        handleClose();
-                                                    }}
-                                                                      className={'site-font'}
-                                                    >
-                                                        {item.icon}
-                                                        {item.label}
-                                                    </MenuItem>)
-                                                })
-                                            }
-
-                                        </Menu>
-                                    </td>
+                                    {
+                                         ! disableMenu && <td className={classes}>
+                                            <IconButton
+                                                id="fade-button"
+                                                aria-controls={openMenu ? 'fade-menu' : undefined}
+                                                aria-haspopup="true"
+                                                aria-expanded={openMenu ? 'true' : undefined}
+                                                onClick={(event) => {
+                                                    setSelectedRow(rawData);
+                                                    handleClick(event)
+                                                }}
+                                            >
+                                                <MoreVertOutlined/>
+                                            </IconButton>
+                                        </td>
+                                    }
                                 </tr>
                             );
                         },
                     )}
                     </tbody>
                 </table>
+                <Menu
+                    id="fade-menu"
+                    MenuListProps={{
+                        'aria-labelledby': 'fade-button',
+                    }}
+                    anchorEl={anchorEl}
+                    open={openMenu}
+                    onClose={handleClose}
+                    TransitionComponent={Fade}
+                    dir={'rtl'}
+                    className={'z-999999'}
+                >
+                    <MenuItem onClick={()=>{
+                        onEdit ? onEdit(selectedRow) : '';
+                        handleClose();
+                    }} className={'site-font'}>
+                        <EditOutlined  className={'text-blue-700'}/>
+                        ویرایش
+                    </MenuItem>
+                    <MenuItem onClick={()=> {
+                        onDelete ? onDelete(selectedRow['id']) : '';
+                        handleClose();
+                    }} className={'site-font'}>
+                        <DeleteOutline className={'text-red-700'}/>
+                        حذف
+                    </MenuItem>
+                    {
+                        (menuItems ?? [])?.map((item, ind)=>{
+                            return (<MenuItem onClick={()=> {
+                                item.onClick(selectedRow['id']);
+                                handleClose();
+                            }}
+                                              className={'site-font'}
+                                              key={`menu${ind}`}
+                            >
+                                {item.icon}
+                                {item.label}
+                            </MenuItem>)
+                        })
+                    }
+
+                </Menu>
             </div>
             <div className="flex items-center justify-between border-t border-blue-gray-50 p-4">
                 <span className="font-normal flex gap-1 site-font">

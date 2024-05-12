@@ -1,4 +1,4 @@
-import {LOGIN_API} from "@/constants/api.consts";
+import {UserAPI} from "@/constants/api.consts";
 import {FormEvent} from "react";
 
 interface ModalProps {
@@ -15,7 +15,7 @@ const LoginPanel: React.FC<ModalProps> = ({isOpen, onClose, router}) => {
         const username = formData.get('username')
         const password = formData.get('password')
 
-        const response = await fetch(LOGIN_API, {
+        const response = await fetch(UserAPI.LOGIN, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({username, password}),

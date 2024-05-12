@@ -6,20 +6,16 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-
-import {
-    CREATE_HUB_API,
-    DELETE_HUB_API,
-    EDIT_HUB_API,
-    GET_HUB_API,
-} from "@/constants/api.consts";
 import {DataTableColumn} from "@/types/data-table";
 import apiService from "@/services/api-service";
 import {ConfirmDialog} from "@/app/components/confirm-dialog";
 import Head from "next/head";
 import {TextField} from "@mui/material";
-import moment from "moment";
 import {LaptopMacOutlined, WorkspacesOutlined} from "@mui/icons-material";
+import HubPages from "@/app/admin/components/hub-pages";
+import {User} from "@/utils/user";
+import {useRouter} from "next/router";
+import {HubAPI} from "@/constants/api.consts";
 
 const columns: DataTableColumn[] = [
     {label: 'نام', name: 'name'},
@@ -35,6 +31,7 @@ const defaultHub = {
     address: '',
 }
 const Hubs = () => {
+    const router = useRouter();
     const [open, setOpen] = React.useState(false);
     const [hubList, setHubList] = React.useState<any[]>([]);
     const [isOpenDelete, setIsOpenDelete] = React.useState(false);
@@ -52,13 +49,30 @@ const Hubs = () => {
         address: string,
         id: string
     }>(defaultHub);
+    const [userRole, setUserRole] = useState('');
+    const [openPages, setOpenPages] = useState(false);
+
+    async function navigate() {
+        await router.push('/admin/hubs/manager-hubs');
+    }
     useEffect(() => {
-        getHubList(page, pageSize);
-    }, [])
+        const user = new User();
+        setUserRole(user.getRole());
+    }, []);
+    useEffect(() => {
+        if (userRole == 'Manager') {
+            navigate()
+        } else if (userRole == 'Admin'){
+            getHubList(page, pageSize);
+        }
+    }, [userRole])
     const handleOpen = () => {
         setOpen(!open);
         setEditMode(false);
         setSelectedHub(defaultHub)
+    }
+    const handlePagesOpen = () => {
+        setOpenPages(!openPages);
     }
 
     async function addToHubs(event: FormEvent<HTMLFormElement>) {
@@ -76,7 +90,7 @@ const Hubs = () => {
                 ...payload
             }
             const response = await apiService.put(
-                EDIT_HUB_API,
+                HubAPI.EDIT,
                 newPayload
             )
             if (response.status == 204) {
@@ -86,7 +100,7 @@ const Hubs = () => {
             }
         } else {
             const response = await apiService.post(
-                CREATE_HUB_API,
+                HubAPI.CREATE,
                 payload
             )
             if (response.status == 200) {
@@ -106,8 +120,9 @@ const Hubs = () => {
                 FirstName: findText
             }
         }
+        const url = HubAPI.GET_LIST;
         const response = await apiService.get(
-            GET_HUB_API,
+            url,
             {
                 params: {
                     ...filter,
@@ -128,12 +143,30 @@ const Hubs = () => {
 
     async function deleteItem(id: string) {
         const response = await apiService.delete(
-            DELETE_HUB_API,
+            HubAPI.DELETE,
             {
                 params: {
                     id: id
                 }
             },
+        );
+        if (response.status == 204) {
+            alert('مرکز فروش حذف شد')
+            getHubList(page, pageSize);
+            setIsOpenDelete(!isOpenDelete);
+        }
+    }
+    async function createPage(id: string) {
+        const response = await apiService.post(
+            HubAPI.CREATE,
+            {
+                // HubId: id
+            },
+            {
+                params: {
+                    HubId: id
+                }
+            }
         );
         if (response.status == 204) {
             alert('مرکز فروش حذف شد')
@@ -158,6 +191,32 @@ const Hubs = () => {
                     افزودن مرکز فروش
                 </Button>
             </div>
+
+            <Dialog
+                open={openPages}
+                onClose={handlePagesOpen}
+                dir={'rtl'}
+                className={'z-99999'}
+                fullWidth={true}
+                maxWidth={'xl'}
+            >
+                <DialogTitle className={'site-font'}>
+                    مدیریت ویژگی های صفحه مرکز فروش
+                </DialogTitle>
+                <DialogContent>
+                    <HubPages></HubPages>
+                </DialogContent>
+                <DialogActions>
+                    <Button
+                        variant="text"
+                        color="error"
+                        onClick={handlePagesOpen}
+                        className="mr-1 site-font"
+                    >
+                        <span>انصراف</span>
+                    </Button>
+                </DialogActions>
+            </Dialog>
 
             <Dialog
                 open={open}
@@ -249,12 +308,14 @@ const Hubs = () => {
             </Dialog>
 
             <SortableTable
+                disableMenu={false}
                 data={hubList}
                 columns={columns}
                 totalPage={totalPage}
                 page={page}
                 size={pageSize}
                 onDelete={(id) => {
+                    // alert(id)
                     setSelectedId(id);
                     setIsOpenDelete(!isOpenDelete)
                 }}
@@ -273,9 +334,14 @@ const Hubs = () => {
                 totalCount={totalCount}
                 menuItems={[
                     {
+                        label: 'ایجاد صفحه',
+                        icon: <LaptopMacOutlined className={'text-green-800'}/>,
+                        onClick: createPage
+                    },
+                    {
                         label: 'مدیریت صفحات',
                         icon: <LaptopMacOutlined className={'text-green-800'}/>,
-                        onClick: (id) => alert(id)
+                        onClick: (id) => handlePagesOpen()
                     },
                     {
                         label: 'مدیریت دسته بندی محصولات',

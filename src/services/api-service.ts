@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {API_BASE_URL, REFRESH_TOKEN_API} from "@/constants/api.consts";
+import {API_BASE_URL, UserAPI} from "@/constants/api.consts";
 
 const apiService = axios.create({
     baseURL: API_BASE_URL,
@@ -8,11 +8,13 @@ const apiService = axios.create({
     },
 });
 
+
+
 // Interceptors for handling access token and refresh token
 apiService.interceptors.request.use(
     (config) => {
         const accessToken = localStorage.getItem('access_token');
-        if (config.url != REFRESH_TOKEN_API && accessToken) {
+        if (config.url != UserAPI.REFRESH_TOKEN && accessToken) {
             config.headers.Authorization = `Bearer ${accessToken}`;
         } else {
             const refreshToken = localStorage.getItem('refresh_token');
@@ -61,7 +63,8 @@ const getNewAccessToken = async () => {
         return null;
     }
     try {
-        const response = await apiService.post(REFRESH_TOKEN_API, {
+        const response = await apiService.post(
+            UserAPI.REFRESH_TOKEN, {
             jwttoken: jwtToken,
             refreshtoken: refreshToken
         });

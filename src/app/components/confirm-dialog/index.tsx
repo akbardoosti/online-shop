@@ -30,6 +30,7 @@ export function ConfirmDialog (
                 dir={'rtl'}
                 open={isOpen}
                 onClose={() => onCancel}
+                className={'z-99999'}
             >
                 <DialogTitle className={'site-font'}>{title}</DialogTitle>
                 <DialogContent className={'site-font'}>

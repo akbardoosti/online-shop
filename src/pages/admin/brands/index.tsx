@@ -7,12 +7,12 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 
-import {CREATE_BRAND_API, DELETE_BRAND_API, GET_BRAND_API} from "@/constants/api.consts";
 import {DataTableColumn} from "@/types/data-table";
 import apiService from "@/services/api-service";
 import {ConfirmDialog} from "@/app/components/confirm-dialog";
 import Head from "next/head";
 import {TextField} from "@mui/material";
+import {BrandAPI} from "@/constants/api.consts";
 
 const columns: DataTableColumn[] = [
     {label: 'نام', name: 'name'},
@@ -41,7 +41,8 @@ const Brands = () => {
         const formData = new FormData(event.currentTarget)
         const brandName = formData.get('brand_name')
         const brandDescription = formData.get('brand_description')
-        const response = await apiService.post(CREATE_BRAND_API, {
+        const response = await apiService.post(
+            BrandAPI.CREATE, {
             name: brandName, description: brandDescription
         })
         if (response.status == 200) {
@@ -59,7 +60,8 @@ const Brands = () => {
                 BrandName: findText
             }
         }
-        const response = await apiService.get(GET_BRAND_API,
+        const response = await apiService.get(
+            BrandAPI.GET_LIST,
             {
                 params: {
                     ...filter,
@@ -82,7 +84,7 @@ const Brands = () => {
     }
     async  function deleteItem(id: string) {
         const response = await apiService.delete(
-            DELETE_BRAND_API,
+            BrandAPI.DELETE,
             {
                 params : {
                     id: id
@@ -166,6 +168,7 @@ const Brands = () => {
 
             <SortableTable
                 data={brandList}
+                disableMenu={false}
                 columns={columns}
                 totalPage={totalPage}
                 page={page}

@@ -6,19 +6,11 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-
-import {
-    CREATE_HUB_API,
-    DELETE_HUB_API,
-    EDIT_HUB_API,
-    GET_HUB_API,
-} from "@/constants/api.consts";
 import {DataTableColumn} from "@/types/data-table";
 import apiService from "@/services/api-service";
 import {ConfirmDialog} from "@/app/components/confirm-dialog";
-import Head from "next/head";
 import {TextField} from "@mui/material";
-import moment from "moment";
+import {HubAPI} from "@/constants/api.consts";
 
 const columns: DataTableColumn[] = [
     {label: 'نام', name: 'name'},
@@ -75,7 +67,7 @@ const HubPages = () => {
                 ...payload
             }
             const response = await apiService.put(
-                EDIT_HUB_API,
+                HubAPI.EDIT,
                 newPayload
             )
             if (response.status == 204) {
@@ -85,7 +77,7 @@ const HubPages = () => {
             }
         } else {
             const response = await apiService.post(
-                CREATE_HUB_API,
+                HubAPI.CREATE,
                 payload
             )
             if (response.status == 200) {
@@ -106,7 +98,7 @@ const HubPages = () => {
             }
         }
         const response = await apiService.get(
-            GET_HUB_API,
+            HubAPI.GET_LIST,
             {
                 params: {
                     ...filter,
@@ -127,7 +119,7 @@ const HubPages = () => {
 
     async function deleteItem(id: string) {
         const response = await apiService.delete(
-            DELETE_HUB_API,
+            HubAPI.DELETE,
             {
                 params: {
                     id: id
@@ -142,12 +134,8 @@ const HubPages = () => {
     }
 
     return (
-        <DefaultLayout>
-            <Head>
-                <title>مدیریت مراکز فروش</title>
-            </Head>
+        <div>
             <div className="flex mb-5 justify-between site-font">
-                <h1 className={'text-lg font-bold site-font'}>مدیریت مراکز فروش</h1>
                 <Button
                     className='px-2 py-1 text-white site-font bg-indigo-400 hover:bg-indigo-500 duration-500'
                     onClick={() => handleOpen()}
@@ -248,6 +236,7 @@ const HubPages = () => {
             </Dialog>
 
             <SortableTable
+                disableMenu={false}
                 data={hubList}
                 columns={columns}
                 totalPage={totalPage}
@@ -271,14 +260,16 @@ const HubPages = () => {
                 }}
                 totalCount={totalCount}
             />
-            <ConfirmDialog
-                isOpen={isOpenDelete}
-                title={'حذف مشتری'}
-                message={'آیا از حذف مشتری مطمئن هستید؟'}
-                onConfirm={() => deleteItem(selectedId)}
-                onCancel={() => setIsOpenDelete(!isOpenDelete)}
-            ></ConfirmDialog>
-        </DefaultLayout>
+            <div className="z-9999">
+                <ConfirmDialog
+                    isOpen={isOpenDelete}
+                    title={'حذف مشتری'}
+                    message={'آیا از حذف مشتری مطمئن هستید؟'}
+                    onConfirm={() => deleteItem(selectedId)}
+                    onCancel={() => setIsOpenDelete(!isOpenDelete)}
+                ></ConfirmDialog>
+            </div>
+        </div>
     )
 }
 
