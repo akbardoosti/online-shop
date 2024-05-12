@@ -9,12 +9,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import {DataTableColumn} from "@/types/data-table";
 import apiService from "@/services/api-service";
 import {ConfirmDialog} from "@/app/components/confirm-dialog";
-import Head from "next/head";
 import {TextField} from "@mui/material";
-import {LaptopMacOutlined, WorkspacesOutlined} from "@mui/icons-material";
-import HubPages from "@/app/admin/components/hub-pages";
-import {User} from "@/utils/user";
-import {useRouter} from "next/router";
 import {HubAPI} from "@/constants/api.consts";
 
 const columns: DataTableColumn[] = [
@@ -30,8 +25,7 @@ const defaultHub = {
     phoneNumber: '',
     address: '',
 }
-const Hubs = () => {
-    const router = useRouter();
+const HubPages = () => {
     const [open, setOpen] = React.useState(false);
     const [hubList, setHubList] = React.useState<any[]>([]);
     const [isOpenDelete, setIsOpenDelete] = React.useState(false);
@@ -49,30 +43,13 @@ const Hubs = () => {
         address: string,
         id: string
     }>(defaultHub);
-    const [userRole, setUserRole] = useState('');
-    const [openPages, setOpenPages] = useState(false);
-
-    async function navigate() {
-        await router.push('/admin/hubs/manager-hubs');
-    }
     useEffect(() => {
-        const user = new User();
-        setUserRole(user.getRole());
-    }, []);
-    useEffect(() => {
-        if (userRole == 'Manager') {
-            navigate()
-        } else if (userRole == 'Admin'){
-            getHubList(page, pageSize);
-        }
-    }, [userRole])
+        getHubList(page, pageSize);
+    }, [])
     const handleOpen = () => {
         setOpen(!open);
         setEditMode(false);
         setSelectedHub(defaultHub)
-    }
-    const handlePagesOpen = () => {
-        setOpenPages(!openPages);
     }
 
     async function addToHubs(event: FormEvent<HTMLFormElement>) {
@@ -120,9 +97,8 @@ const Hubs = () => {
                 FirstName: findText
             }
         }
-        const url = HubAPI.GET_LIST;
         const response = await apiService.get(
-            url,
+            HubAPI.GET_LIST,
             {
                 params: {
                     ...filter,
@@ -156,32 +132,10 @@ const Hubs = () => {
             setIsOpenDelete(!isOpenDelete);
         }
     }
-    async function createPage(id: string) {
-        const response = await apiService.post(
-            HubAPI.CREATE,
-            {
-                // HubId: id
-            },
-            {
-                params: {
-                    HubId: id
-                }
-            }
-        );
-        if (response.status == 204) {
-            alert('مرکز فروش حذف شد')
-            getHubList(page, pageSize);
-            setIsOpenDelete(!isOpenDelete);
-        }
-    }
 
     return (
-        <DefaultLayout>
-            <Head>
-                <title>مدیریت مراکز فروش</title>
-            </Head>
+        <div>
             <div className="flex mb-5 justify-between site-font">
-                <h1 className={'text-lg font-bold site-font'}>مدیریت مراکز فروش</h1>
                 <Button
                     className='px-2 py-1 text-white site-font bg-indigo-400 hover:bg-indigo-500 duration-500'
                     onClick={() => handleOpen()}
@@ -191,32 +145,6 @@ const Hubs = () => {
                     افزودن مرکز فروش
                 </Button>
             </div>
-
-            <Dialog
-                open={openPages}
-                onClose={handlePagesOpen}
-                dir={'rtl'}
-                className={'z-99999'}
-                fullWidth={true}
-                maxWidth={'xl'}
-            >
-                <DialogTitle className={'site-font'}>
-                    مدیریت ویژگی های صفحه مرکز فروش
-                </DialogTitle>
-                <DialogContent>
-                    <HubPages></HubPages>
-                </DialogContent>
-                <DialogActions>
-                    <Button
-                        variant="text"
-                        color="error"
-                        onClick={handlePagesOpen}
-                        className="mr-1 site-font"
-                    >
-                        <span>انصراف</span>
-                    </Button>
-                </DialogActions>
-            </Dialog>
 
             <Dialog
                 open={open}
@@ -315,7 +243,6 @@ const Hubs = () => {
                 page={page}
                 size={pageSize}
                 onDelete={(id) => {
-                    // alert(id)
                     setSelectedId(id);
                     setIsOpenDelete(!isOpenDelete)
                 }}
@@ -332,33 +259,18 @@ const Hubs = () => {
                     getHubList(page, pageSize);
                 }}
                 totalCount={totalCount}
-                menuItems={[
-                    {
-                        label: 'ایجاد صفحه',
-                        icon: <LaptopMacOutlined className={'text-green-800'}/>,
-                        onClick: createPage
-                    },
-                    {
-                        label: 'مدیریت صفحات',
-                        icon: <LaptopMacOutlined className={'text-green-800'}/>,
-                        onClick: (id) => handlePagesOpen()
-                    },
-                    {
-                        label: 'مدیریت دسته بندی محصولات',
-                        icon: <WorkspacesOutlined className={'text-indigo-700'}/>,
-                        onClick: (id) => alert(id)
-                    },
-                ]}
             />
-            <ConfirmDialog
-                isOpen={isOpenDelete}
-                title={'حذف مشتری'}
-                message={'آیا از حذف مشتری مطمئن هستید؟'}
-                onConfirm={() => deleteItem(selectedId)}
-                onCancel={() => setIsOpenDelete(!isOpenDelete)}
-            ></ConfirmDialog>
-        </DefaultLayout>
+            <div className="z-9999">
+                <ConfirmDialog
+                    isOpen={isOpenDelete}
+                    title={'حذف مشتری'}
+                    message={'آیا از حذف مشتری مطمئن هستید؟'}
+                    onConfirm={() => deleteItem(selectedId)}
+                    onCancel={() => setIsOpenDelete(!isOpenDelete)}
+                ></ConfirmDialog>
+            </div>
+        </div>
     )
 }
 
-export default Hubs;
+export default HubPages;

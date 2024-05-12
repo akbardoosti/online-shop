@@ -1,30 +1,98 @@
 export const API_BASE_URL = 'http://185.231.115.153:4040';
-export const LOGIN_API = API_BASE_URL + '/api/v1/User/Authenticate';
-export const CREATE_CUSTOMER_API = '/api/v1/CreateCustomer';
-export const DELETE_CUSTOMER_API = '/api/v1/DeleteCustomer';
-export const GET_CUSTOMERS_API = '/api/v1/GetCustomersWithPagination';
-export const UPDATE_CUSTOMER_API = '/api/v1/UpdateCustomer';
-export const CREATE_HUB_API = '/api/v1/CreateHub';
-export const GET_HUB_API = '/api/v1/GetHubs';
-export const GET_MANAGER_HUB_API = '/api/v1/GetUserHub';
-export const DELETE_HUB_API = '/api/v1/DeleteHub';
-export const EDIT_HUB_API = '/api/v1/UpdateHub';
-export const EDIT_MANAGER_HUB_API = '/api/v1/UpdateUserHub';
-export const CREATE_USER_API = '/api/v1/CreateUser';
-export const DELETE_USER_API = '/api/v1/DeleteUser';
-export const BULK_USER_IMPORT_API = '/api/v1/ExcelUserImport';
-export const USERS_API = '/api/v1/GetUsers';
-export const REFRESH_TOKEN_API = '/api/v1/User/RefToken';
-export const CREATE_BRAND_API = '/api/v1/CreateBrand';
-export const GET_BRAND_API = '/api/v1/GetBrands';
-export const DELETE_BRAND_API = '/api/v1/DeleteBrand';
-export const CREATE_TAG_API = '/api/v1/CreateTag';
-export const DELETE_TAG_API = '/api/v1/DeleteTag';
-export const GET_TAGS_API = '/api/v1/GetTags';
-export const CREATE_PRODUCT_TAG_API = '/api/v1/CreateProductTags';
-export const DELETE_PRODUCT_TAG_API = '/api/v1/DeleteProductTag';
-export const PRODUCT_TAGS_API = '/api/v1/GetProductTags';
-export const CREATE_PRODUCT_PROPERTY_API = '/api/v1/CreateProductProperty';
-export const CREATE_UNIT_PRODUCT_PROPERTY_API = '/api/v1/CreateUnitProductProperty';
-export const DELETE_PRODUCT_PROPERTY_API = '/api/v1/DeleteProductProperty';
-export const GET_PRODUCT_PROPERTY_API = '/api/v1/GetProductProperty';
+export enum BrandAPI {
+    CREATE = '/api/v1/CreateBrand',
+    GET_LIST = '/api/v1/GetBrands',
+    DELETE = '/api/v1/DeleteBrand',
+    UPDATE= '/api/v1/UpdateBrand'
+}
+export enum CourierAPI {
+    CREATE = '/api/v1/CreateCourierOrder',
+    GET_LIST = '/api/v1/GetCourierOrdersWithPagination',
+    DELETE = '/api/v1/DeleteCourierOrder',
+    UPDATE= '/api/v1/UpdateCourierOrder'
+}
+export enum CustomerAPI {
+    CREATE = '/api/v1/CreateCustomer',
+    DELETE = '/api/v1/DeleteCustomer',
+    GET_LIST = '/api/v1/GetCustomersWithPagination',
+    UPDATE = '/api/v1/UpdateCustomer'
+}
+export enum HubAPI {
+    CREATE = '/api/v1/CreateHub',
+    GET_LIST = '/api/v1/GetHubs',
+    DELETE = '/api/v1/DeleteHub',
+    EDIT = '/api/v1/UpdateHub',
+    EDIT_MANAGER = '/api/v1/UpdateUserHub',
+    GET_MANAGER = '/api/v1/GetUserHub'
+}
+
+export enum HubPageAPI {
+    CREATE = '/api/v1/CreateHubPage',
+    CREATE_UNIT_PAGE_PROPERTY = '/api/v1/CreateUnitPageProperty',
+    DELETE = '/api/v1/DeleteHubPageProperty',
+    GET_PROPERTIES = '/api/v1/GetPageProperties',
+    UPDATE_PAGE_PROPERTY = '/api/v1/UpdatePageProperty',
+}
+export enum HubProductCategoryAPI {
+    CREATE = '/api/v1/CreateHubProductCategory',
+    DELETE = '/api/v1/DeleteHubProductCategory',
+    GET_LIST = '/api/v1/GetHubProductCategories',
+    UPDATE = '/api/v1/GetHubProductCategories'
+}
+export enum HubProductLabelAPI {
+    CREATE = '/api/v1/CreateHubProductLabel',
+    MANAGER_CREATE = '/api/v1/CreateHubUserProductLabel',
+    DELETE = '/api/v1/CreateHubUserProductLabel',
+    MANAGER_DELETE = '/api/v1/DeleteHubUserProductLabel',
+    GET_LIST = '/api/v1/GetHubProductLabels',
+    MANAGER_GET_LIST = '/api/v1/GetHubUserProductLabels',
+    UPDATE = '/api/v1/GetHubProductCategories',
+    MANAGER_UPDATE = '/api/v1/UpdateHubUserProductLabel',
+}
+export enum InvoiceAPI {
+    GET_LIST = '/api/v1/UpdateHubUserProductLabel'
+}
+export enum OrderAPI {
+    CREATE = '/api/v1/CreateOrder',
+    DELETE = '/api/v1/DeleteOrder',
+    GET_LIST = '/api/v1/GetOrdersWithPagination',
+    UPDATE = '/api/v1/UpdateOrder'
+}
+export enum OrderItemAPI {
+    CREATE = '/api/v1/CreateOrderItem',
+    DELETE = '/api/v1/DeleteOrderItem',
+    GET_LIST = '/api/v1/GetOrderItems',
+    UPDATE = '/api/v1/UpdateOrderItem'
+}
+export enum OrderStatusAPI {
+    CREATE = '/api/v1/CreateOrderStatus',
+    DELETE = '/api/v1/DeleteOrderStatus',
+    GET_LIST = '/api/v1/GetOrderStatuses',
+    UPDATE = '/api/v1/UpdateOrderStatus'
+}
+export enum ProductAPI {
+    CREATE = '/api/v1/CreateProduct',
+    DELETE = '/api/v1/DeleteProduct',
+    GET_LIST = '/api/v1/GetProductsWithPagination',
+    UPDATE = '/api/v1/GetProductsWithPagination'
+}
+export enum ProductPropertyAPI {
+    MANAGER_CREATE = '/api/v1/CreateProductProperty',
+    MANAGER_CREATE_UNIT = '/api/v1/CreateUnitProductProperty',
+    DELETE = '/api/v1/DeleteProductProperty',
+    GET_LIST = '/api/v1/GetProductsWithPagination',
+}
+export enum ProductTagAPI {
+    CREATE_PRODUCT_TAG = '/api/v1/CreateProductTags',
+    DELETE_PRODUCT_TAG = '/api/v1/DeleteProductTag',
+    PRODUCT_TAGS = '/api/v1/GetProductTags'
+}
+
+export enum UserAPI {
+    LOGIN = API_BASE_URL + '/api/v1/User/Authenticate',
+    CREATE_USER = '/api/v1/CreateUser',
+    DELETE_USER = '/api/v1/DeleteUser',
+    BULK_USER_IMPORT = '/api/v1/ExcelUserImport',
+    USERS = '/api/v1/GetUsers',
+    REFRESH_TOKEN = '/api/v1/User/RefToken'
+}

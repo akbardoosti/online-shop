@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import SidebarLinkGroup from "./SidebarLinkGroup";
+import {User} from "@/utils/user";
 
 interface SidebarProps {
     sidebarOpen: boolean;
@@ -22,7 +23,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     const [sidebarExpanded, setSidebarExpanded] = useState(
         storedSidebarExpanded === null ? false : storedSidebarExpanded === "true",
     );
+    const [userRole, setUserRole] = useState('');
 
+    useEffect(() => {
+        const user = new User();
+        setUserRole(user.getRole());
+    }, []);
     // close on click outside
     useEffect(() => {
         const clickHandler = ({ target }: MouseEvent) => {
@@ -179,7 +185,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             </li>
                             <li>
                                 <Link
-                                    href="/admin/hubs"
+                                    href={"/admin/hubs"+(userRole=='Manager'?'/manager-hubs':'')}
                                     className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
                                         pathname.includes("tables") && "bg-graydark dark:bg-meta-4"
                                     }`}
