@@ -57,11 +57,11 @@ const Users = () => {
     const [findText, setFindText] = useState('');
     const [editMode, setEditMode] = useState(false);
     const [selectedUser, setSelectedUser] = useState<UserModel>(defaultUser);
-    const [userRole, setUserRole] = useState<UserRole>();
+    const [userRole, setUserRole] = useState<Partial<UserRole>&{label: string}>();
     const [currentUserRole, setCurrentUserRole] = useState<string>("");
     const [openPages, setOpenPages] = useState(false);
     const [hubList, setHubList] = useState<HubList>([]);
-    const [selectedHub, setSelectedHub] = useState<HubModel>();
+    const [selectedHub, setSelectedHub] = useState<Partial<HubModel>&{label: string}>();
     const [userRoles, setUserRoles] = useState<UserRoleList>([]);
     async function navigate() {
         await router.push('/admin/users/manager-users');
@@ -292,7 +292,7 @@ const Users = () => {
                                             }
                                         }}
                                         onInput={(event) => {
-                                            fetchHubList(event.target?.value)
+                                            fetchHubList((event.target as any)?.value)
                                         }}
                                         options={hubList}
                                         renderInput={(params) => <TextField {...params} label="مرکز فروش"/>}
@@ -309,7 +309,7 @@ const Users = () => {
                                             }
                                         }}
                                         onInput={(event) => {
-                                            fetchUserRole(event.target?.value)
+                                            fetchUserRole((event.target as any)?.value)
                                         }}
                                         options={userRoles}
                                         renderInput={(params) => <TextField {...params} label="نقش کاربر"/>}
