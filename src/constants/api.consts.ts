@@ -92,7 +92,8 @@ export enum UserAPI {
     LOGIN = API_BASE_URL + '/api/v1/User/Authenticate',
     CREATE_USER = '/api/v1/CreateUser',
     DELETE_USER = '/api/v1/DeleteUser',
+    GET_USER_ROLES = '/api/v1/GetUserRoles',
     BULK_USER_IMPORT = '/api/v1/ExcelUserImport',
-    USERS = '/api/v1/GetUsers',
+    GET_LIST = '/api/v1/GetUsers',
     REFRESH_TOKEN = '/api/v1/User/RefToken'
 }

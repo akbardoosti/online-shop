@@ -16,6 +16,8 @@ import HubPages from "@/app/admin/components/hub-pages";
 import {User} from "@/utils/user";
 import {useRouter} from "next/router";
 import {HubAPI} from "@/constants/api.consts";
+import {HubModel} from "@/types/hub.types";
+import {getHubList} from "@/services/hub.service";
 
 const columns: DataTableColumn[] = [
     {label: 'نام', name: 'name'},
@@ -23,12 +25,16 @@ const columns: DataTableColumn[] = [
     {label: 'شماره تلفن', name: 'phoneNumber'},
     {label: 'آدرس', name: 'address'},
 ]
-const defaultHub = {
+const defaultHub: HubModel = {
     id: '',
     name: '',
     location: '',
     phoneNumber: '',
     address: '',
+    productCategoryCount: 0,
+    brandCount: 0,
+    orderCount: 0,
+    productCount: 0,
 }
 const Hubs = () => {
     const router = useRouter();
@@ -42,13 +48,7 @@ const Hubs = () => {
     const [totalCount, setTotalCount] = React.useState(0);
     const [findText, setFindText] = useState('');
     const [editMode, setEditMode] = useState(false);
-    const [selectedHub, setSelectedHub] = useState<{
-        name: string,
-        location: string,
-        phoneNumber: string,
-        address: string,
-        id: string
-    }>(defaultHub);
+    const [selectedHub, setSelectedHub] = useState<HubModel>(defaultHub);
     const [userRole, setUserRole] = useState('');
     const [openPages, setOpenPages] = useState(false);
 
@@ -63,7 +63,7 @@ const Hubs = () => {
         if (userRole == 'Manager') {
             navigate()
         } else if (userRole == 'Admin'){
-            getHubList(page, pageSize);
+            callGetHubList(page, pageSize).then();
         }
     }, [userRole])
     const handleOpen = () => {
@@ -95,7 +95,7 @@ const Hubs = () => {
             )
             if (response.status == 204) {
                 alert('ویرایش مرکز فروش موفق بود');
-                await getHubList(page, pageSize);
+                await callGetHubList(page, pageSize);
                 setOpen(false);
             }
         } else {
@@ -105,39 +105,19 @@ const Hubs = () => {
             )
             if (response.status == 200) {
                 alert('ثبت مرکز فروش موفق بود');
-                await getHubList(page, pageSize);
+
                 setOpen(false)
             }
         }
     }
-
-    async function getHubList(page: number, pageSize: number) {
+    async function callGetHubList(page: number, pageSize: number) {
         setPage(page);
         setPageSize(pageSize);
-        let filter = {};
-        if (findText) {
-            filter = {
-                FirstName: findText
-            }
-        }
-        const url = HubAPI.GET_LIST;
-        const response = await apiService.get(
-            url,
-            {
-                params: {
-                    ...filter,
-                    PageNumber: page,
-                    PageSize: pageSize
-                }
-            });
-        if (response.status == 200) {
-            const list = response.data;
-            if (list) {
-                setHubList(list.items);
-                setTotalPage(list.totalPages);
-                setTotalCount(list.totalPageCount);
-                setTotalCount(list.totalCount);
-            }
+        const response = await getHubList(page, pageSize, findText);
+        if (response) {
+            setHubList(response.items);
+            setTotalPage(response.totalPages);
+            setTotalCount(response.totalCount);
         }
     }
 
@@ -152,7 +132,7 @@ const Hubs = () => {
         );
         if (response.status == 204) {
             alert('مرکز فروش حذف شد')
-            getHubList(page, pageSize);
+            await callGetHubList(page, pageSize);
             setIsOpenDelete(!isOpenDelete);
         }
     }
@@ -170,7 +150,7 @@ const Hubs = () => {
         );
         if (response.status == 204) {
             alert('مرکز فروش حذف شد')
-            getHubList(page, pageSize);
+            await callGetHubList(page, pageSize);
             setIsOpenDelete(!isOpenDelete);
         }
     }
@@ -320,7 +300,7 @@ const Hubs = () => {
                     setIsOpenDelete(!isOpenDelete)
                 }}
                 onPageChange={(event) => {
-                    getHubList(event.page, event.size)
+                    callGetHubList(event.page, event.size).then()
                 }}
                 onEdit={(user) => {
                     setEditMode(true);
@@ -329,7 +309,7 @@ const Hubs = () => {
                 }}
                 onSearch={(text) => {
                     setFindText(text);
-                    getHubList(page, pageSize);
+                    callGetHubList(page, pageSize).then();
                 }}
                 totalCount={totalCount}
                 menuItems={[
@@ -352,8 +332,8 @@ const Hubs = () => {
             />
             <ConfirmDialog
                 isOpen={isOpenDelete}
-                title={'حذف مشتری'}
-                message={'آیا از حذف مشتری مطمئن هستید؟'}
+                title={'حذف مرکز فروش'}
+                message={'آیا از حذف مرکز فروش مطمئن هستید؟'}
                 onConfirm={() => deleteItem(selectedId)}
                 onCancel={() => setIsOpenDelete(!isOpenDelete)}
             ></ConfirmDialog>
